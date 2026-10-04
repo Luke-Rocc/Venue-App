@@ -206,3 +206,26 @@ button.link { appearance: none; border: 0; background: none; color: var(--accent
 @keyframes aperture { to { transform: scale(0.15) rotate(30deg); opacity: 0; } }
 @keyframes fade-out { to { opacity: 0; } }
 @keyframes intro-out { to { opacity: 0; visibility: hidden; } }
+
+/* AI venue guides */
+.ai-button {
+  width: 100%;
+  padding: 14px 16px;
+  font: inherit; font-weight: 600; color: var(--accent);
+  background: none;
+  border: 1px dashed var(--accent);
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+.card .ai-button { width: auto; margin-top: 8px; }
+.ai-button:hover { background: var(--card); }
+.badge.ai { background: none; border: 1px solid var(--accent); color: var(--accent); }
+.ai-note { font-size: 0.9rem; color: var(--muted); border-left: 3px solid var(--accent); padding: 4px 10px; margin: 0 0 12px; }
+.spinner {
+  display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px;
+  border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }

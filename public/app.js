@@ -9,6 +9,7 @@ const gearForm = document.getElementById("gear-form");
 
 const PROFILE_KEY = "venue-video:profile";
 const GEAR_KEY = "venue-video:kit";
+const AI_KEY = "venue-video:ai-venues";
 const SOCIAL = ["instagram", "youtube", "vimeo", "tiktok", "linkedin", "website"];
 let venue = null;
 let gearCatalog = [];
@@ -263,7 +264,7 @@ function renderRoom() {
   const cap = room.capacity || {};
   const stage = room.stage || {};
   const gear = room.gear || {};
-  const stageSize = stage.width_m ? `${stage.width_m} x ${stage.depth_m} m` : null;
+  const stageSize = stage.width_m ? (stage.depth_m ? `${stage.width_m} x ${stage.depth_m} m` : `${stage.width_m} m bred`) : null;
 
   const bring = (gear.bring || []).map((item, i) => itemApplies(item, p) ? `
     <li><label>
@@ -279,6 +280,7 @@ function renderRoom() {
     : `<p class="muted">Tip: udfyld <a href="#" data-goto="profile">Min profil</a>, så tilpasser vi listen til jeres opgave.</p>`;
 
   content.innerHTML = `
+    ${venue.ai ? `<p class="ai-note">Lavet af AI ud fra stedets hjemmeside ${esc(new Date(venue.generated_at).toLocaleDateString("da-DK"))}. Tjek tal og regler med stedet før optagelsen.</p>` : ""}
     <section class="card">
       <h2>${esc(venue.name)}</h2>
       <div class="muted">${esc(venue.address)} · <a href="${esc(venue.website)}" target="_blank" rel="noopener">hjemmeside</a></div>
@@ -295,7 +297,7 @@ function renderRoom() {
     <section class="card"><h3>Huset har</h3><p>${esc(gear.house_has)}</p></section>
     <section class="card"><h3>Kan blive hjemme</h3><p>${esc(gear.leave_home)}</p></section>
     <section class="card"><h3>Værd at vide</h3><p>${esc(gear.good_to_know)}</p>
-      ${venue.sources?.tech_spec_pdf ? `<p class="muted">Kilde: <a href="${esc(venue.sources.tech_spec_pdf)}" target="_blank" rel="noopener">${esc(venue.spec_version || "tech spec")}</a></p>` : ""}
+      ${venue.ai ? aiSources(venue) : venue.sources?.tech_spec_pdf ? `<p class="muted">Kilde: <a href="${esc(venue.sources.tech_spec_pdf)}" target="_blank" rel="noopener">${esc(venue.spec_version || "tech spec")}</a></p>` : ""}
     </section>`;
 
   content.querySelectorAll("input[type=checkbox]").forEach((box) => {
@@ -304,6 +306,73 @@ function renderRoom() {
       try { localStorage.setItem(box.dataset.key, box.checked ? "1" : "0"); } catch {}
     });
   });
+}
+
+// AI guides: the Worker at /api/venue searches the web and returns a venue in the same format.
+
+function loadAiVenues() {
+  try { return JSON.parse(localStorage.getItem(AI_KEY)) || {}; } catch { return {}; }
+}
+
+function saveAiVenue(v) {
+  const all = loadAiVenues();
+  all[v.id] = v;
+  try { localStorage.setItem(AI_KEY, JSON.stringify(all)); } catch {}
+}
+
+// Adds saved AI guides to the venue list, replacing a "Kommer snart" entry with the same name.
+function mergeAiVenues() {
+  Object.values(loadAiVenues()).forEach((v) => {
+    const same = venues.find((e) => e.id === v.id || norm(e.name) === norm(v.name));
+    const entry = { id: v.id, name: v.name, area: v.area, address: v.address, capacity: v.rooms[0]?.capacity?.standing, tags: [], data: v };
+    if (same && same.file) return;
+    if (same) Object.assign(same, { data: v, aiId: v.id });
+    else venues.push(entry);
+  });
+}
+
+function aiSources(v) {
+  const list = v.sources?.list || [];
+  if (!list.length) return "";
+  return `<p class="muted">Kilder: ${list.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title || s.url)}</a>`).join(" · ")}</p>`;
+}
+
+function showDetail() {
+  results.hidden = true;
+  searchInput.parentElement.hidden = true;
+  detail.hidden = false;
+}
+
+async function findWithAi(name) {
+  showDetail();
+  venue = null;
+  roomSelect.parentElement.hidden = true;
+  content.innerHTML = `<section class="card ai-loading"><h2>${esc(name)}</h2>
+    <p><span class="spinner" aria-hidden="true"></span> AI'en søger efter stedet og læser dets tech spec. Det tager typisk 1-2 minutter.</p></section>`;
+  let data;
+  try {
+    const res = await fetch("api/venue", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+    data = await res.json().catch(() => ({ error: `Serveren svarede ${res.status}.` }));
+  } catch {
+    data = { error: "Ingen forbindelse. Prøv igen." };
+  }
+  if (detail.hidden) return; // user went back while waiting
+  if (data.error || !data.found) {
+    content.innerHTML = `<section class="card"><h2>${esc(name)}</h2>
+      <p>${esc(data.error || data.reason || "Fandt ikke stedet.")}</p>
+      <button type="button" class="ai-button" data-ai="${esc(name)}">Prøv igen</button></section>`;
+    return;
+  }
+  saveAiVenue(data.venue);
+  mergeAiVenues();
+  renderResults();
+  const entry = venues.find((e) => e.data?.id === data.venue.id);
+  history.replaceState(null, "", `#venue/${entry?.id || data.venue.id}`);
+  showVenue(data.venue);
 }
 
 // Search
@@ -320,9 +389,11 @@ function matches(v, q) {
 function renderResults() {
   const q = searchInput.value.trim();
   const found = venues.filter((v) => matches(v, q))
-    .sort((a, b) => Boolean(b.file) - Boolean(a.file) || a.name.localeCompare(b.name, "da"));
+    .sort((a, b) => Boolean(b.file || b.data) - Boolean(a.file || a.data) || a.name.localeCompare(b.name, "da"));
+  const exact = found.some((v) => norm(v.name) === norm(q));
+  const aiRow = q.length >= 2 && !exact ? `<li><button type="button" class="ai-button" data-ai="${esc(q)}">Find "${esc(q)}" med AI</button></li>` : "";
   if (!found.length) {
-    results.innerHTML = `<li class="muted empty">Ingen spillesteder matcher "${esc(q)}".</li>`;
+    results.innerHTML = `<li class="muted empty">Ingen spillesteder på listen matcher "${esc(q)}".</li>${aiRow}`;
     return;
   }
   results.innerHTML = found.map((v) => `
@@ -331,8 +402,8 @@ function renderResults() {
         <b>${esc(v.name)}</b>
         <span class="muted">${esc(v.area || "")}${v.capacity ? ` · ${esc(v.capacity)} stående` : ""}</span>
       </span>
-      ${v.file ? `<span class="badge ok">Guide klar</span>` : `<span class="badge">Kommer snart</span>`}
-    </button></li>`).join("");
+      ${v.file ? `<span class="badge ok">Guide klar</span>` : v.data ? `<span class="badge ai">AI-guide</span>` : `<span class="badge">Kommer snart</span>`}
+    </button></li>`).join("") + aiRow;
 }
 
 function showSearch() {
@@ -345,19 +416,23 @@ function showSearch() {
 async function openVenue(id) {
   const entry = venues.find((v) => v.id === id);
   if (!entry) return;
-  results.hidden = true;
-  searchInput.parentElement.hidden = true;
-  detail.hidden = false;
+  showDetail();
   history.replaceState(null, "", `#venue/${id}`);
+  if (entry.data) return showVenue(entry.data);
   if (!entry.file) {
     venue = null;
     roomSelect.parentElement.hidden = true;
     content.innerHTML = `<section class="card"><h2>${esc(entry.name)}</h2>
       <div class="muted">${esc(entry.area || "")}</div>
-      <p>Vi har ikke kortlagt ${esc(entry.name)} endnu, så der er ingen pakkeliste her. Den kommer, når vi har gennemgået stedets tech spec.</p></section>`;
+      <p>Vi har ikke kortlagt ${esc(entry.name)} endnu. AI'en kan finde stedets tech spec og lave en pakkeliste nu.</p>
+      <button type="button" class="ai-button" data-ai="${esc(entry.name)}">Lav guide med AI</button></section>`;
     return;
   }
-  venue = await (await fetch(entry.file)).json();
+  showVenue(await (await fetch(entry.file)).json());
+}
+
+function showVenue(v) {
+  venue = v;
   roomSelect.parentElement.hidden = venue.rooms.length < 2;
   roomSelect.innerHTML = venue.rooms.map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join("");
   renderRoom();
@@ -390,9 +465,14 @@ async function init() {
     initGear();
     venues = await (await fetch("data/venues.json")).json();
     searchInput.addEventListener("input", renderResults);
+    mergeAiVenues();
     results.addEventListener("click", (e) => {
       const id = e.target.closest("[data-venue]")?.dataset.venue;
       if (id) openVenue(id);
+    });
+    document.getElementById("tab-venues").addEventListener("click", (e) => {
+      const name = e.target.closest("[data-ai]")?.dataset.ai;
+      if (name) findWithAi(name);
     });
     document.getElementById("back").addEventListener("click", showSearch);
     roomSelect.addEventListener("change", renderRoom);

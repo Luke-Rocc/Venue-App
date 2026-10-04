@@ -2,7 +2,7 @@
 
 Vælg et spillested i København og se hvor stort det er, og hvilket videoudstyr du skal tage med for at filme der.
 
-Ren statisk side (HTML, CSS, JS), ingen build-trin.
+Statisk side (HTML, CSS, JS) i `public/` plus en lille Cloudflare Worker (`src/worker.js`), som lader AI finde nye spillesteder.
 
 ## Kør lokalt
 
@@ -24,3 +24,12 @@ Forbind repoet under Workers & Pages med:
 
 - Build command: *(tom)*
 - Deploy command: `npx wrangler deploy`
+
+## AI: find et spillested
+
+I søgningen kan man trykke "Find ... med AI". Siden kalder `POST /api/venue`, hvor Workeren beder Claude søge på nettet efter stedets tech spec og skrive en videoguide i samme format som `stengade.json`. Guiden gemmes på brugerens enhed.
+
+Det kræver en API-nøgle fra Anthropic som secret på Cloudflare:
+
+- Cloudflare: Workers & Pages → venue-app → Settings → Variables and Secrets → Add → Type *Secret*, navn `ANTHROPIC_API_KEY`.
+- Lokalt: læg `ANTHROPIC_API_KEY=...` i `.dev.vars` og kør `npm install && npx wrangler dev`.
