@@ -10,6 +10,7 @@ const gearForm = document.getElementById("gear-form");
 const PROFILE_KEY = "venue-video:profile";
 const GEAR_KEY = "venue-video:kit";
 const AI_KEY = "venue-video:ai-venues";
+const MAP_KEY = "venue-video:map-venues";
 const SOCIAL = ["instagram", "youtube", "vimeo", "tiktok", "linkedin", "website"];
 let venue = null;
 let gearCatalog = [];
@@ -358,7 +359,7 @@ function saveAiVenue(v) {
 // Adds saved AI guides to the venue list, replacing a "Kommer snart" entry with the same name.
 function mergeAiVenues() {
   Object.values(loadAiVenues()).forEach((v) => {
-    const same = venues.find((e) => e.id === v.id || norm(e.name) === norm(v.name));
+    const same = venues.find((e) => e.id === v.listed_as) || venues.find((e) => e.id === v.id || norm(e.name) === norm(v.name));
     const entry = { id: v.id, name: v.name, area: v.area, address: v.address, capacity: v.rooms[0]?.capacity?.standing, tags: [], data: v };
     if (same && same.file) return;
     if (same) Object.assign(same, { data: v, aiId: v.id });
@@ -378,7 +379,9 @@ function showDetail() {
   detail.hidden = false;
 }
 
-async function findWithAi(name) {
+async function findWithAi(name, entryId) {
+  const entry = venues.find((e) => e.id === entryId);
+  const query = entry?.address ? `${name}, ${entry.address}` : name;
   showDetail();
   venue = null;
   roomSelect.parentElement.hidden = true;
@@ -389,7 +392,7 @@ async function findWithAi(name) {
     const res = await fetch("api/venue", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ name: query }),
     });
     data = await res.json().catch(() => ({ error: `Serveren svarede ${res.status}.` }));
   } catch {
@@ -399,21 +402,80 @@ async function findWithAi(name) {
   if (data.error || !data.found) {
     content.innerHTML = `<section class="card"><h2>${esc(name)}</h2>
       <p>${esc(data.error || data.reason || "Fandt ikke stedet.")}</p>
-      <button type="button" class="ai-button" data-ai="${esc(name)}">Prøv igen</button></section>`;
+      <button type="button" class="ai-button" data-ai="${esc(name)}" data-ai-for="${esc(entryId || "")}">Prøv igen</button></section>`;
     return;
   }
+  if (entryId) data.venue.listed_as = entryId;
   saveAiVenue(data.venue);
   mergeAiVenues();
   renderResults();
-  const entry = venues.find((e) => e.data?.id === data.venue.id);
-  history.replaceState(null, "", `#venue/${entry?.id || data.venue.id}`);
+  const listed = venues.find((e) => e.data?.id === data.venue.id);
+  history.replaceState(null, "", `#venue/${listed?.id || data.venue.id}`);
   showVenue(data.venue);
+}
+
+// Map search: places from OpenStreetMap (via /api/places) that aren't on our list yet.
+// Picking one saves it on the device, so it shows up in the list from then on.
+
+let mapTimer = null;
+let mapHits = [];
+
+function loadMapVenues() {
+  try { return JSON.parse(localStorage.getItem(MAP_KEY)) || {}; } catch { return {}; }
+}
+
+function mergeMapVenues() {
+  Object.values(loadMapVenues()).forEach((p) => {
+    if (venues.some((e) => e.id === p.id)) return;
+    venues.push({ id: p.id, name: p.name, area: p.area, address: p.address, lat: p.lat, lon: p.lon, kind: p.kind, tags: [p.kind].filter(Boolean) });
+  });
+}
+
+function addMapVenue(p) {
+  const all = loadMapVenues();
+  all[p.id] = p;
+  try { localStorage.setItem(MAP_KEY, JSON.stringify(all)); } catch {}
+  mergeMapVenues();
+}
+
+function searchMap(q) {
+  clearTimeout(mapTimer);
+  const el = document.getElementById("map-results");
+  if (!el || q.length < 3) return;
+  el.innerHTML = `<li class="muted empty"><span class="spinner" aria-hidden="true"></span> Søger på kortet …</li>`;
+  mapTimer = setTimeout(async () => {
+    let places = [];
+    try { places = (await (await fetch(`api/places?q=${encodeURIComponent(q)}`)).json()).places || []; } catch {}
+    if (searchInput.value.trim() !== q) return;
+    const known = new Set(venues.map((v) => norm(v.name)));
+    mapHits = places.filter((p) => !known.has(norm(p.name)));
+    const box = document.getElementById("map-results");
+    if (!box) return;
+    box.innerHTML = mapHits.length ? `<li class="map-head muted">Fundet på kortet</li>` + mapHits.map((p, i) => `
+      <li><button type="button" class="result" data-place="${i}">
+        <span class="result-main">
+          <b>${esc(p.name)}</b>
+          <span class="muted">${esc([p.kind, p.address || p.area].filter(Boolean).join(" · "))}</span>
+        </span>
+        <span class="badge map">Fra kortet</span>
+      </button></li>`).join("") : "";
+  }, 400);
+}
+
+function mapLinks(v) {
+  const q = v.lat ? `${v.lat},${v.lon}` : `${v.name}, ${v.address || "København"}`;
+  const google = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+  if (!v.lat) return `<p><a href="${esc(google)}" target="_blank" rel="noopener">Åbn i Google Maps</a></p>`;
+  const d = 0.004;
+  const embed = `https://www.openstreetmap.org/export/embed.html?bbox=${v.lon - d},${v.lat - d / 2},${v.lon + d},${v.lat + d / 2}&layer=mapnik&marker=${v.lat},${v.lon}`;
+  return `<iframe class="map" src="${esc(embed)}" title="Kort over ${esc(v.name)}" loading="lazy"></iframe>
+    <p class="muted"><a href="${esc(google)}" target="_blank" rel="noopener">Åbn i Google Maps</a> · Kort © OpenStreetMap</p>`;
 }
 
 // Search
 
 function norm(s) {
-  return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ø/g, "o").replace(/æ/g, "ae").replace(/å/g, "a");
+  return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ø/g, "o").replace(/æ/g, "ae").replace(/å/g, "a").replace(/aa/g, "a");
 }
 
 function matches(v, q) {
@@ -427,8 +489,10 @@ function renderResults() {
     .sort((a, b) => Boolean(b.file || b.data) - Boolean(a.file || a.data) || a.name.localeCompare(b.name, "da"));
   const exact = found.some((v) => norm(v.name) === norm(q));
   const aiRow = q.length >= 2 && !exact ? `<li><button type="button" class="ai-button" data-ai="${esc(q)}">Find "${esc(q)}" med AI</button></li>` : "";
+  const mapRow = q.length >= 3 ? `<li><ul id="map-results" class="results nested"></ul></li>` : "";
   if (!found.length) {
-    results.innerHTML = `<li class="muted empty">Ingen spillesteder på listen matcher "${esc(q)}".</li>${aiRow}`;
+    results.innerHTML = `<li class="muted empty">Ingen spillesteder på listen matcher "${esc(q)}".</li>${mapRow}${aiRow}`;
+    searchMap(q);
     return;
   }
   results.innerHTML = found.map((v) => `
@@ -438,7 +502,8 @@ function renderResults() {
         <span class="muted">${esc(v.area || "")}${v.capacity ? ` · ${esc(v.capacity)} stående` : ""}</span>
       </span>
       ${v.file ? `<span class="badge ok">Guide klar</span>` : v.data ? `<span class="badge ai">AI-guide</span>` : `<span class="badge">Kommer snart</span>`}
-    </button></li>`).join("") + aiRow;
+    </button></li>`).join("") + mapRow + aiRow;
+  searchMap(q);
 }
 
 function showSearch() {
@@ -458,9 +523,10 @@ async function openVenue(id) {
     venue = null;
     roomSelect.parentElement.hidden = true;
     content.innerHTML = `<section class="card"><h2>${esc(entry.name)}</h2>
-      <div class="muted">${esc(entry.area || "")}</div>
+      <div class="muted">${esc([entry.kind, entry.address || entry.area].filter(Boolean).join(" · "))}</div>
+      ${mapLinks(entry)}
       <p>Vi har ikke kortlagt ${esc(entry.name)} endnu. AI'en kan finde stedets tech spec og lave en pakkeliste nu.</p>
-      <button type="button" class="ai-button" data-ai="${esc(entry.name)}">Lav guide med AI</button></section>`;
+      <button type="button" class="ai-button" data-ai="${esc(entry.name)}" data-ai-for="${esc(entry.id)}">Lav guide med AI</button></section>`;
     return;
   }
   showVenue(await (await fetch(entry.file)).json());
@@ -500,14 +566,21 @@ async function init() {
     initGear();
     venues = await (await fetch("data/venues.json")).json();
     searchInput.addEventListener("input", renderResults);
+    mergeMapVenues();
     mergeAiVenues();
     results.addEventListener("click", (e) => {
       const id = e.target.closest("[data-venue]")?.dataset.venue;
-      if (id) openVenue(id);
+      if (id) return openVenue(id);
+      const place = mapHits[e.target.closest("[data-place]")?.dataset.place];
+      if (place) {
+        addMapVenue(place);
+        renderResults();
+        openVenue(place.id);
+      }
     });
     document.getElementById("tab-venues").addEventListener("click", (e) => {
-      const name = e.target.closest("[data-ai]")?.dataset.ai;
-      if (name) findWithAi(name);
+      const btn = e.target.closest("[data-ai]");
+      if (btn) findWithAi(btn.dataset.ai, btn.dataset.aiFor);
     });
     document.getElementById("back").addEventListener("click", showSearch);
     roomSelect.addEventListener("change", renderRoom);

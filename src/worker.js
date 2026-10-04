@@ -176,7 +176,7 @@ async function handleVenue(request, env, ctx) {
   }
   let query;
   try { query = String((await request.json()).name || "").trim(); } catch { query = ""; }
-  if (query.length < 2 || query.length > 80) return json({ error: "Skriv navnet på et spillested (2-80 tegn)." }, 400);
+  if (query.length < 2 || query.length > 160) return json({ error: "Skriv navnet på et spillested (2-160 tegn)." }, 400);
 
   // Same venue asked again within CACHE_DAYS is served from Cloudflare's cache, so it costs nothing.
   const cacheKey = new Request(`https://cache.venue-app/ai/${slug(query)}`);
@@ -205,10 +205,64 @@ async function handleVenue(request, env, ctx) {
   return res;
 }
 
+// Map search: looks up places in OpenStreetMap through Photon (free, no key) and keeps
+// the ones that look like somewhere you could film a show.
+const PHOTON = "https://photon.komoot.io/api/";
+const CPH_BBOX = "12.30,55.55,12.75,55.80"; // Greater Copenhagen, lon/lat
+const PLACE_KINDS = {
+  nightclub: "Natklub", music_venue: "Spillested", concert_hall: "Koncertsal", theatre: "Teater",
+  arts_centre: "Kulturhus", social_centre: "Kulturhus", community_centre: "Medborgerhus",
+  events_venue: "Eventsted", conference_centre: "Konferencested", exhibition_centre: "Udstillingssted",
+  cinema: "Biograf", bar: "Bar", pub: "Pub", cafe: "Café", stadium: "Stadion", sports_centre: "Idrætshal",
+  church: "Kirke", place_of_worship: "Kirke",
+};
+
+function toPlace(f) {
+  const p = f.properties || {};
+  const [lon, lat] = f.geometry?.coordinates || [];
+  const street = [p.street, p.housenumber].filter(Boolean).join(" ");
+  const town = [p.postcode, p.city].filter(Boolean).join(" ");
+  return {
+    id: `osm-${(p.osm_type || "x").toLowerCase()}${p.osm_id}`,
+    name: p.name,
+    kind: PLACE_KINDS[p.osm_value],
+    area: p.district || p.locality || p.city || "",
+    address: [street, town].filter(Boolean).join(", "),
+    lat, lon,
+  };
+}
+
+async function handlePlaces(url, env) {
+  const q = (url.searchParams.get("q") || "").trim();
+  if (q.length < 3 || q.length > 80) return json({ places: [] });
+  const api = `${env.PHOTON_URL || PHOTON}?q=${encodeURIComponent(q)}&bbox=${CPH_BBOX}&limit=25`;
+  let data;
+  try {
+    const res = await fetch(api, {
+      headers: { "user-agent": "venue-video-guide (https://venue-app.lukehorsving.workers.dev)" },
+      cf: { cacheTtl: 86400, cacheEverything: true },
+    });
+    if (!res.ok) throw new Error(String(res.status));
+    data = await res.json();
+  } catch {
+    return json({ places: [], error: "Kortsøgningen svarer ikke lige nu." }, 502);
+  }
+  const seen = new Set();
+  const places = (data.features || [])
+    .filter((f) => f.properties?.name && PLACE_KINDS[f.properties.osm_value])
+    .map(toPlace)
+    .filter((p) => !seen.has(p.name + p.address) && seen.add(p.name + p.address))
+    .slice(0, 8);
+  const out = json({ places });
+  out.headers.set("cache-control", "public, max-age=3600");
+  return out;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/venue") return handleVenue(request, env, ctx);
+    if (url.pathname === "/api/places") return handlePlaces(url, env);
     return env.ASSETS.fetch(request);
   },
 };
