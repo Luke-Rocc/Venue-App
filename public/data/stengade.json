@@ -124,15 +124,18 @@
           },
           {
             "text": "Stortrommepedal, lilletromme og evt. egne bækkener.",
-            "inferred": "Pedal er ikke nævnt, og mange trommeslagere foretrækker egen lilletromme og bækkener."
+            "inferred": "Pedal er ikke nævnt, og mange trommeslagere foretrækker egen lilletromme og bækkener.",
+            "needs": "drums"
           },
           {
             "text": "In-ear system, hvis I bruger det. Med kun 4 monitormix er IEM en fordel for bands med 5 eller flere.",
-            "inferred": "Intet IEM nævnt i spec."
+            "inferred": "Intet IEM nævnt i spec.",
+            "needs": "iem"
           },
           {
             "text": "Keyboard og keyboardstativ.",
-            "inferred": "Intet keys-backline nævnt."
+            "inferred": "Intet keys-backline nævnt.",
+            "needs": "keys"
           },
           {
             "text": "Backdrop på max 6 x 2,2 m (eget lysshow er ikke muligt, fast rig). Projektion skal aftales på forhånd."
@@ -143,7 +146,19 @@
           }
         ],
         "leave_home": "PA, mixer, monitorer, mikrofoner, DI-bokse, stativer og forstærkere, hvis husets backline passer jer. Skader på husets backline trækkes fra gagen.",
-        "good_to_know": "Lydgrænse 100 dB(A) Leq15. Ingen barriere. Kun 2,1 m fra scene til loft. Load-in fra fronten, plads til max 4 varevogne, motorer slukket efter kl. 22. Kontakt: production@stengade.dk."
+        "good_to_know": "Lydgrænse 100 dB(A) Leq15. Ingen barriere. Kun 2,1 m fra scene til loft. Load-in fra fronten, plads til max 4 varevogne, motorer slukket efter kl. 22. Kontakt: production@stengade.dk.",
+        "house_provides": [
+          "pa",
+          "monitors",
+          "mics",
+          "di",
+          "stands",
+          "guitar_amp",
+          "bass_amp",
+          "drumkit",
+          "cymbals",
+          "lights"
+        ]
       }
     },
     {
@@ -206,7 +221,11 @@
           }
         ],
         "leave_home": "PA og mixer.",
-        "good_to_know": "Lydgrænse kun 92 dB(A), så det passer bedst til akustisk, singer-songwriter eller DJ."
+        "good_to_know": "Lydgrænse kun 92 dB(A), så det passer bedst til akustisk, singer-songwriter eller DJ.",
+        "house_provides": [
+          "pa",
+          "monitors"
+        ]
       }
     }
   ],

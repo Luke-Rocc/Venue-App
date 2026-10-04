@@ -10,20 +10,74 @@
 <body>
   <header>
     <h1>Venue Guide</h1>
-    <p class="lead">Vælg et spillested i København og se hvad bandet skal tage med.</p>
-    <div class="pickers">
-      <label>Spillested
-        <select id="venue"></select>
-      </label>
-      <label>Rum
-        <select id="room"></select>
-      </label>
-    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" data-tab="venues" aria-selected="true">Venue</button>
+      <button role="tab" data-tab="gear" aria-selected="false">Gear</button>
+      <button role="tab" data-tab="profile" aria-selected="false">Min profil</button>
+    </nav>
   </header>
-  <main id="content"><p class="muted">Indlæser…</p></main>
-  <footer>
-    <p class="muted">Punkter mærket <span class="tag">udledt</span> er vores vurdering, ikke stedets egne ord. Tjek altid stedets tech spec.</p>
-  </footer>
+
+  <section id="tab-venues" role="tabpanel">
+    <div class="wrap">
+      <p class="lead">Vælg et spillested i København og se hvad bandet skal tage med.</p>
+      <div class="pickers">
+        <label>Spillested
+          <select id="venue"></select>
+        </label>
+        <label>Rum
+          <select id="room"></select>
+        </label>
+      </div>
+      <div id="content"><p class="muted">Indlæser…</p></div>
+      <p class="muted">Punkter mærket <span class="tag">udledt</span> er vores vurdering, ikke stedets egne ord. Tjek altid stedets tech spec.</p>
+    </div>
+  </section>
+
+  <section id="tab-gear" role="tabpanel" hidden>
+    <div class="wrap">
+      <p class="lead">Kryds af hvad I selv har. Under Venue ser I så, hvad af det I skal tage med, og hvad huset allerede har.</p>
+      <form id="gear-form" class="card">
+        <ul class="check" id="gear-list"></ul>
+        <label class="field gear-notes">Andet udstyr
+          <textarea name="notes" rows="3" placeholder="Fx loopstation, ekstra guitar, merch-bord"></textarea>
+        </label>
+        <p id="gear-saved" class="muted" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="tab-profile" role="tabpanel" hidden>
+    <div class="wrap">
+      <p class="lead">Fortæl om bandet, så tilpasser vi pakkelisten til jer. Profilen gemmes kun på denne enhed.</p>
+      <form id="profile-form" class="card">
+        <label class="field">Bandnavn
+          <input name="bandName" type="text" placeholder="Fx The Stengaders" autocomplete="off">
+        </label>
+        <label class="field">Antal på scenen
+          <input name="members" type="number" min="1" max="20" placeholder="4">
+        </label>
+        <fieldset class="field">
+          <legend>Instrumenter</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="instruments" value="vocals"> Vokal</label>
+            <label><input type="checkbox" name="instruments" value="guitar"> Guitar</label>
+            <label><input type="checkbox" name="instruments" value="bass"> Bas</label>
+            <label><input type="checkbox" name="instruments" value="drums"> Trommer</label>
+            <label><input type="checkbox" name="instruments" value="keys"> Keys</label>
+            <label><input type="checkbox" name="instruments" value="electronics"> Elektronik / DJ</label>
+          </div>
+        </fieldset>
+        <fieldset class="field">
+          <legend>Vi har selv</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="tech"> Egen lydtekniker</label>
+          </div>
+        </fieldset>
+        <p id="saved" class="muted" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <script src="app.js"></script>
 </body>
 </html>

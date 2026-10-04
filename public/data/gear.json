@@ -1,0 +1,66 @@
+[
+  {
+    "id": "guitar_amp",
+    "name": "Guitarforstærker"
+  },
+  {
+    "id": "bass_amp",
+    "name": "Basforstærker"
+  },
+  {
+    "id": "drumkit",
+    "name": "Trommesæt (skind og stativer)"
+  },
+  {
+    "id": "snare",
+    "name": "Lilletromme"
+  },
+  {
+    "id": "kick_pedal",
+    "name": "Stortrommepedal"
+  },
+  {
+    "id": "cymbals",
+    "name": "Bækkener"
+  },
+  {
+    "id": "keyboard",
+    "name": "Keyboard og stativ"
+  },
+  {
+    "id": "pedalboard",
+    "name": "Pedalboard"
+  },
+  {
+    "id": "mics",
+    "name": "Mikrofoner"
+  },
+  {
+    "id": "di",
+    "name": "DI-bokse"
+  },
+  {
+    "id": "stands",
+    "name": "Mikrofonstativer"
+  },
+  {
+    "id": "iem",
+    "name": "In-ear system"
+  },
+  {
+    "id": "monitors",
+    "name": "Monitorer / wedges"
+  },
+  {
+    "id": "pa",
+    "name": "PA-anlæg"
+  },
+  {
+    "id": "lights",
+    "name": "Lys"
+  },
+  {
+    "id": "backdrop",
+    "name": "Backdrop"
+  }
+]
