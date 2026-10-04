@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Venue Guide</title>
-  <meta name="description" content="Vælg et spillested i København og se hvad du skal tage med.">
-  <link rel="stylesheet" href="style.css?v=3">
+  <title>Venue Video Guide</title>
+  <meta name="description" content="Vælg et spillested i København og se hvilket videoudstyr du skal tage med.">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <header>
-    <h1>Venue Guide</h1>
+    <h1>Venue Video Guide</h1>
     <nav class="tabs" role="tablist">
       <button role="tab" data-tab="venues" aria-selected="true">Venue</button>
       <button role="tab" data-tab="gear" aria-selected="false">Gear</button>
@@ -19,7 +19,7 @@
 
   <section id="tab-venues" role="tabpanel">
     <div class="wrap">
-      <p class="lead">Vælg et spillested i København og se hvad bandet skal tage med.</p>
+      <p class="lead">Vælg et spillested i København og se hvilket videoudstyr du skal tage med for at filme der.</p>
       <div class="pickers">
         <label>Spillested
           <select id="venue"></select>
@@ -39,7 +39,7 @@
       <form id="gear-form" class="card">
         <ul class="check" id="gear-list"></ul>
         <label class="field gear-notes">Andet udstyr
-          <textarea name="notes" rows="3" placeholder="Fx loopstation, ekstra guitar, merch-bord"></textarea>
+          <textarea name="notes" rows="3" placeholder="Fx slider, ND-filtre, ekstra skærm"></textarea>
         </label>
         <p id="gear-saved" class="muted" aria-live="polite"></p>
       </form>
@@ -48,29 +48,27 @@
 
   <section id="tab-profile" role="tabpanel" hidden>
     <div class="wrap">
-      <p class="lead">Fortæl om bandet, så tilpasser vi pakkelisten til jer. Profilen gemmes kun på denne enhed.</p>
+      <p class="lead">Fortæl om jer og jeres opgaver, så tilpasser vi pakkelisten. Profilen gemmes kun på denne enhed.</p>
       <form id="profile-form" class="card">
-        <label class="field">Bandnavn
-          <input name="bandName" type="text" placeholder="Fx The Stengaders" autocomplete="off">
+        <label class="field">Navn / firma
+          <input name="name" type="text" placeholder="Fx Nordlys Film" autocomplete="off">
         </label>
-        <label class="field">Antal på scenen
-          <input name="members" type="number" min="1" max="20" placeholder="4">
+        <label class="field">Antal kameraoperatører
+          <input name="operators" type="number" min="1" max="20" placeholder="2">
         </label>
         <fieldset class="field">
-          <legend>Instrumenter</legend>
+          <legend>Typiske opgaver</legend>
           <div class="chips">
-            <label><input type="checkbox" name="instruments" value="vocals"> Vokal</label>
-            <label><input type="checkbox" name="instruments" value="guitar"> Guitar</label>
-            <label><input type="checkbox" name="instruments" value="bass"> Bas</label>
-            <label><input type="checkbox" name="instruments" value="drums"> Trommer</label>
-            <label><input type="checkbox" name="instruments" value="keys"> Keys</label>
-            <label><input type="checkbox" name="instruments" value="electronics"> Elektronik / DJ</label>
+            <label><input type="checkbox" name="jobs" value="concert"> Koncertoptagelse</label>
+            <label><input type="checkbox" name="jobs" value="livestream"> Livestream</label>
+            <label><input type="checkbox" name="jobs" value="musicvideo"> Musikvideo</label>
+            <label><input type="checkbox" name="jobs" value="interview"> Interview / backstage</label>
           </div>
         </fieldset>
         <fieldset class="field">
           <legend>Vi har selv</legend>
           <div class="chips">
-            <label><input type="checkbox" name="tech"> Egen lydtekniker</label>
+            <label><input type="checkbox" name="soundTech"> Egen lydperson</label>
           </div>
         </fieldset>
         <p id="saved" class="muted" aria-live="polite"></p>
@@ -78,6 +76,6 @@
     </div>
   </section>
 
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 </body>
 </html>

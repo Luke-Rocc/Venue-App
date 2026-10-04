@@ -5,8 +5,8 @@ const profileForm = document.getElementById("profile-form");
 
 const gearForm = document.getElementById("gear-form");
 
-const PROFILE_KEY = "venue-guide:profile";
-const GEAR_KEY = "venue-guide:gear";
+const PROFILE_KEY = "venue-video:profile";
+const GEAR_KEY = "venue-video:gear";
 let venue = null;
 let gearCatalog = [];
 
@@ -21,25 +21,25 @@ function loadProfile() {
 }
 
 function hasProfile(p) {
-  return Boolean(p.bandName || p.members || (p.instruments && p.instruments.length));
+  return Boolean(p.name || p.operators || (p.jobs && p.jobs.length));
 }
 
 function fillProfileForm() {
   const p = loadProfile();
-  profileForm.bandName.value = p.bandName || "";
-  profileForm.members.value = p.members || "";
-  profileForm.querySelectorAll("input[name=instruments]").forEach((box) => {
-    box.checked = (p.instruments || []).includes(box.value);
+  profileForm.name.value = p.name || "";
+  profileForm.operators.value = p.operators || "";
+  profileForm.querySelectorAll("input[name=jobs]").forEach((box) => {
+    box.checked = (p.jobs || []).includes(box.value);
   });
-  profileForm.tech.checked = Boolean(p.tech);
+  profileForm.soundTech.checked = Boolean(p.soundTech);
 }
 
 function saveProfile() {
   const p = {
-    bandName: profileForm.bandName.value.trim(),
-    members: parseInt(profileForm.members.value, 10) || null,
-    instruments: [...profileForm.querySelectorAll("input[name=instruments]:checked")].map((b) => b.value),
-    tech: profileForm.tech.checked,
+    name: profileForm.name.value.trim(),
+    operators: parseInt(profileForm.operators.value, 10) || null,
+    jobs: [...profileForm.querySelectorAll("input[name=jobs]:checked")].map((b) => b.value),
+    soundTech: profileForm.soundTech.checked,
   };
   try {
     localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
@@ -104,22 +104,24 @@ function ownGearSection(room) {
 
 // Hide gear items the band doesn't need, based on the item's `needs` field.
 function itemApplies(item, p) {
-  if (!item.needs || !hasProfile(p)) return true;
-  if (item.needs === "iem") return ownsGear("iem");
-  return (p.instruments || []).includes(item.needs);
+  if (!item.needs || !(p.jobs && p.jobs.length)) return true;
+  return p.jobs.includes(item.needs);
 }
 
 function profileNotes(room, p) {
   if (!hasProfile(p)) return [];
   const notes = [];
-  const sends = room.sound?.monitors?.sends;
-  if (p.members && sends && !ownsGear("iem") && p.members > sends) {
-    notes.push(`I er ${p.members} på scenen, men der er kun ${sends} monitormix. Overvej in-ears eller del mix.`);
+  const stageWidth = room.stage?.width_m;
+  if (p.operators >= 3 && stageWidth && stageWidth < 8) {
+    notes.push(`I er ${p.operators} kameraoperatører på en ${stageWidth} m bred scene. Aftal faste positioner med huset på forhånd.`);
   }
-  if ((p.instruments || []).includes("keys")) {
-    notes.push("Husk keyboard, stativ og evt. DI. Huset har ingen keys.");
+  if ((p.jobs || []).includes("livestream")) {
+    notes.push("Til livestream: test internettet på stedet før showet, og hav en plan B (fx 5G-router).");
   }
-  if (p.tech) notes.push("I har egen tekniker. Send jeres stageplot og inputliste til produktionen på forhånd.");
+  if ((p.jobs || []).includes("musicvideo")) {
+    notes.push("Musikvideo kræver typisk lejeaftale af rummet. Se stedets udlejningsside.");
+  }
+  if (p.soundTech) notes.push("I har egen lydperson. Aftal et feed fra lydpulten med husets tekniker.");
   return notes;
 }
 
@@ -148,8 +150,8 @@ function renderRoom() {
 
   const notes = profileNotes(room, p);
   const forYou = hasProfile(p)
-    ? (notes.length ? `<section class="card highlight"><h3>Til ${esc(p.bandName || "jer")}</h3><ul>${notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul></section>` : "")
-    : `<p class="muted">Tip: udfyld <a href="#" data-goto="profile">Min profil</a>, så tilpasser vi listen til jeres band.</p>`;
+    ? (notes.length ? `<section class="card highlight"><h3>Til ${esc(p.name || "jer")}</h3><ul>${notes.map((n) => `<li>${esc(n)}</li>`).join("")}</ul></section>` : "")
+    : `<p class="muted">Tip: udfyld <a href="#" data-goto="profile">Min profil</a>, så tilpasser vi listen til jeres opgave.</p>`;
 
   content.innerHTML = `
     <section class="card">

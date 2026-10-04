@@ -117,47 +117,52 @@
         "source": "tech_spec_pdf"
       },
       "gear": {
-        "house_has": "Meyer PA, Allen & Heath SQ7, 5 L-Acoustics wedges på 4 monitormix, mikrofoner, DI-bokse og stativer til et normalt rockband, fast lysrig med frivillig lystekniker, samt trommesæt, 2 Bogner guitarforstærkere og en TC Electronic 2x10 basforstærker.",
+        "house_has": "Fast lysrig med LED og hazer, styret af en frivillig lystekniker. Allen & Heath SQ7 lydpult på FOH (kan optage via USB). 3-fasede CEE-udtag, wifi, 7 x 4 m scene og plads til 230 stående.",
         "bring": [
           {
-            "text": "Instrumenter, pedalboards, kabler til egne ting, strenge og stikker."
+            "text": "Kamera(er) med ekstra batterier og hurtige SD/CFexpress-kort. Regn med 2-3 timers optagelse pr. kamera."
           },
           {
-            "text": "Stortrommepedal, lilletromme og evt. egne bækkener.",
-            "inferred": "Pedal er ikke nævnt, og mange trommeslagere foretrækker egen lilletromme og bækkener.",
-            "needs": "drums"
+            "text": "Vidvinkel (fx 16-35 mm). Der er kun 2,1 m fra scene til loft, så høje vinkler er svære, og I står tæt på.",
+            "inferred": "Lavt til loftet og 7 x 4 m scene, så vidvinkel er afgørende."
           },
           {
-            "text": "In-ear system, hvis I bruger det. Med kun 4 monitormix er IEM en fordel for bands med 5 eller flere.",
-            "inferred": "Intet IEM nævnt i spec.",
-            "needs": "iem"
+            "text": "Lysstærkt objektiv (f/1.8 eller bedre) eller telezoom til close-ups fra salen.",
+            "inferred": "Koncertlys skifter hurtigt og er ofte mørkt."
           },
           {
-            "text": "Keyboard og keyboardstativ.",
-            "inferred": "Intet keys-backline nævnt.",
-            "needs": "keys"
+            "text": "Gimbal eller monopod i stedet for store stativer. Der er ingen barriere, så publikum står helt op til scenen.",
+            "inferred": "Ingen barriere, så stativer i salen er svære."
           },
           {
-            "text": "Backdrop på max 6 x 2,2 m (eget lysshow er ikke muligt, fast rig). Projektion skal aftales på forhånd."
+            "text": "Ekstern lydoptager og XLR-kabel, så I kan tage et stereo-feed fra lydpulten. Medbring også et USB-stik eller en laptop til multitrack fra SQ7.",
+            "inferred": "SQ7 kan optage stereo og multitrack. Aftal det med lydteknikeren på forhånd."
           },
           {
-            "text": "Egen tekniker er en god idé, men ikke krævet.",
-            "inferred": "Min vurdering."
+            "text": "Kameramikrofon til ambience og publikumslyd."
+          },
+          {
+            "text": "Forlængerledning og stikdåse (dansk/Schuko) til opladning. Spørg huset, hvor I må sætte strøm til."
+          },
+          {
+            "text": "Udstyr til livestream: encoder og kabel til internet. Huset har wifi, men bed om et kablet net, hvis det findes.",
+            "needs": "livestream",
+            "inferred": "Wifi er nævnt, kablet net er ikke."
+          },
+          {
+            "text": "Lille LED-panel til interviews backstage. Kælderen er ikke belyst til video.",
+            "needs": "interview",
+            "inferred": "Backstage-lys er ikke nævnt."
+          },
+          {
+            "text": "Gaffatape og kabelbeskyttere, så ingen falder over jeres kabler."
           }
         ],
-        "leave_home": "PA, mixer, monitorer, mikrofoner, DI-bokse, stativer og forstærkere, hvis husets backline passer jer. Skader på husets backline trækkes fra gagen.",
-        "good_to_know": "Lydgrænse 100 dB(A) Leq15. Ingen barriere. Kun 2,1 m fra scene til loft. Load-in fra fronten, plads til max 4 varevogne, motorer slukket efter kl. 22. Kontakt: production@stengade.dk.",
+        "leave_home": "Store lyspakker og lysstativer på scenen. Riggen er fast, og I må ikke ændre den. Drone er ikke en mulighed indendørs her.",
+        "good_to_know": "Riggen har LED og hazer, så hold øje med flimmer (brug 1/50 eller 1/100 s lukker) og blandet farvetemperatur. Ingen pyro. Projektion skal aftales på forhånd. Load-in fra fronten, max 4 varevogne, motorer slukket efter kl. 22. Kontakt production@stengade.dk om kamerapositioner og lyd-feed.",
         "house_provides": [
-          "pa",
-          "monitors",
-          "mics",
-          "di",
-          "stands",
-          "guitar_amp",
-          "bass_amp",
-          "drumkit",
-          "cymbals",
-          "lights"
+          "led_light",
+          "light_stand"
         ]
       }
     },
@@ -203,29 +208,33 @@
         "source": "tech_spec_pdf"
       },
       "gear": {
-        "house_has": "Lille Yamaha PA, Soundcraft Ui16 mixer og 1 monitor. Mikrofoner aftales med booker.",
+        "house_has": "Lille Yamaha PA og en Soundcraft Ui16 mixer (kan optage stereo til USB-stik). 16A CEE-udtag. Scenen er 3,6 x 3,6 m med 2,6 m til loftet. Plads til 120 stående.",
         "bring": [
           {
-            "text": "Backline: forstærkere og trommer."
+            "text": "Kamera(er), ekstra batterier og kort."
           },
           {
-            "text": "Mikrofoner og DI-bokse.",
-            "inferred": "Ikke garanteret af huset."
+            "text": "Lys! Der er ingen beskrevet lysrig, så tag 1-2 LED-paneler med stativer med.",
+            "inferred": "Lys er ikke specificeret for Café Retro."
           },
           {
-            "text": "Gerne in-ears eller egne monitorer (kun 1 monitor i huset)."
+            "text": "Lysstærkt objektiv (f/1.8 eller bedre) og vidvinkel. Rummet er lille."
           },
           {
-            "text": "Evt. lille lys.",
-            "inferred": "Lys er ikke specificeret i spec."
+            "text": "USB-stik til stereooptagelse fra Ui16, eller egen optager og kabel.",
+            "inferred": "Ui16 kan optage til USB. Aftal det med booker."
+          },
+          {
+            "text": "Forlængerledning og stikdåse."
+          },
+          {
+            "text": "Udstyr til livestream. Spørg om wifi eller kablet net.",
+            "needs": "livestream"
           }
         ],
-        "leave_home": "PA og mixer.",
-        "good_to_know": "Lydgrænse kun 92 dB(A), så det passer bedst til akustisk, singer-songwriter eller DJ.",
-        "house_provides": [
-          "pa",
-          "monitors"
-        ]
+        "leave_home": "Store stativer og kraner. Der er ikke plads.",
+        "good_to_know": "Lydgrænsen er 92 dB(A), så typisk akustisk musik eller DJ. Godt til intime optagelser og interviews. Aftal alt med booker/produktion, da udstyret afhænger af andre events.",
+        "house_provides": []
       }
     }
   ],

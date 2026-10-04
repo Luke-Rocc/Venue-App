@@ -1,66 +1,74 @@
 [
   {
-    "id": "guitar_amp",
-    "name": "Guitarforstærker"
+    "id": "camera",
+    "name": "Kamera(er)"
   },
   {
-    "id": "bass_amp",
-    "name": "Basforstærker"
+    "id": "wide_lens",
+    "name": "Vidvinkelobjektiv"
   },
   {
-    "id": "drumkit",
-    "name": "Trommesæt (skind og stativer)"
+    "id": "fast_lens",
+    "name": "Lysstærkt objektiv (f/1.8 eller bedre)"
   },
   {
-    "id": "snare",
-    "name": "Lilletromme"
+    "id": "tele_lens",
+    "name": "Telezoom"
   },
   {
-    "id": "kick_pedal",
-    "name": "Stortrommepedal"
+    "id": "gimbal",
+    "name": "Gimbal"
   },
   {
-    "id": "cymbals",
-    "name": "Bækkener"
+    "id": "tripod",
+    "name": "Stativ / monopod"
   },
   {
-    "id": "keyboard",
-    "name": "Keyboard og stativ"
+    "id": "batteries",
+    "name": "Ekstra batterier"
   },
   {
-    "id": "pedalboard",
-    "name": "Pedalboard"
+    "id": "cards",
+    "name": "Hukommelseskort"
   },
   {
-    "id": "mics",
-    "name": "Mikrofoner"
+    "id": "recorder",
+    "name": "Ekstern lydoptager"
   },
   {
-    "id": "di",
-    "name": "DI-bokse"
+    "id": "xlr",
+    "name": "XLR-kabler"
   },
   {
-    "id": "stands",
-    "name": "Mikrofonstativer"
+    "id": "camera_mic",
+    "name": "Kameramikrofon"
   },
   {
-    "id": "iem",
-    "name": "In-ear system"
+    "id": "lav_mic",
+    "name": "Lavalier / trådløs mikrofon"
   },
   {
-    "id": "monitors",
-    "name": "Monitorer / wedges"
+    "id": "led_light",
+    "name": "LED-lys"
   },
   {
-    "id": "pa",
-    "name": "PA-anlæg"
+    "id": "light_stand",
+    "name": "Lysstativer"
   },
   {
-    "id": "lights",
-    "name": "Lys"
+    "id": "stream_encoder",
+    "name": "Livestream-encoder"
   },
   {
-    "id": "backdrop",
-    "name": "Backdrop"
+    "id": "laptop",
+    "name": "Laptop"
+  },
+  {
+    "id": "power",
+    "name": "Forlængerledning og stikdåse"
+  },
+  {
+    "id": "tape",
+    "name": "Gaffatape"
   }
 ]

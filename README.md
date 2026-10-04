@@ -1,6 +1,6 @@
-# Venue Guide
+# Venue Video Guide
 
-Vælg et spillested i København og se hvor stort det er, og hvad bandet skal tage med.
+Vælg et spillested i København og se hvor stort det er, og hvilket videoudstyr du skal tage med for at filme der.
 
 Ren statisk side (HTML, CSS, JS), ingen build-trin.
 
