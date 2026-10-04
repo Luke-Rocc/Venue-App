@@ -258,11 +258,65 @@ async function handlePlaces(url, env) {
   return out;
 }
 
+// All venues: every named music venue, club, theatre and culture house in Greater Copenhagen
+// from OpenStreetMap (Overpass API, free). Cached at the edge for a day.
+const OVERPASS = "https://overpass-api.de/api/interpreter";
+const VENUE_KINDS = ["nightclub", "music_venue", "concert_hall", "theatre", "arts_centre", "events_venue", "social_centre"];
+const OVERPASS_QUERY = `[out:json][timeout:25];
+nwr["amenity"~"^(${VENUE_KINDS.join("|")})$"]["name"](55.55,12.30,55.80,12.75);
+out center tags;`;
+
+// Postcode -> bydel, for the grey line under each name.
+function areaFor(postcode, tags) {
+  const n = parseInt(postcode, 10);
+  if (tags["addr:suburb"]) return tags["addr:suburb"];
+  if (n >= 1000 && n < 1500) return "Indre By";
+  if (n >= 1500 && n < 1800) return "Vesterbro";
+  if ((n >= 1800 && n < 2000) || n === 2000) return "Frederiksberg";
+  const map = { 2100: "Østerbro", 2150: "Nordhavn", 2200: "Nørrebro", 2300: "Amager", 2450: "Sydhavn", 2400: "Nordvest",
+    2500: "Valby", 2700: "Brønshøj", 2720: "Vanløse", 2770: "Kastrup", 2800: "Lyngby", 2900: "Hellerup", 2650: "Hvidovre" };
+  return map[n] || tags["addr:city"] || "";
+}
+
+async function handleAllPlaces(env) {
+  let data;
+  try {
+    const res = await fetch(`${env.OVERPASS_URL || OVERPASS}?data=${encodeURIComponent(OVERPASS_QUERY)}`, {
+      headers: { "user-agent": "venue-video-guide (https://venue-app.lukehorsving.workers.dev)" },
+      cf: { cacheTtl: 86400, cacheEverything: true },
+    });
+    if (!res.ok) throw new Error(String(res.status));
+    data = await res.json();
+  } catch {
+    return json({ places: [], error: "Kortet svarer ikke lige nu." }, 502);
+  }
+  const seen = new Set();
+  const places = (data.elements || []).map((el) => {
+    const t = el.tags || {};
+    const street = [t["addr:street"], t["addr:housenumber"]].filter(Boolean).join(" ");
+    const town = [t["addr:postcode"], t["addr:city"]].filter(Boolean).join(" ");
+    return {
+      id: `osm-${el.type[0]}${el.id}`,
+      name: t.name,
+      kind: PLACE_KINDS[t.amenity],
+      area: areaFor(t["addr:postcode"], t),
+      address: street ? [street, town].filter(Boolean).join(", ") : "",
+      website: t.website || t["contact:website"] || "",
+      lat: el.lat ?? el.center?.lat,
+      lon: el.lon ?? el.center?.lon,
+    };
+  }).filter((p) => p.name && p.lat && !seen.has(p.name.toLowerCase()) && seen.add(p.name.toLowerCase()));
+  const out = json({ places });
+  out.headers.set("cache-control", "public, max-age=21600");
+  return out;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/venue") return handleVenue(request, env, ctx);
     if (url.pathname === "/api/places") return handlePlaces(url, env);
+    if (url.pathname === "/api/all-places") return handleAllPlaces(env);
     return env.ASSETS.fetch(request);
   },
 };

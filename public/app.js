@@ -431,6 +431,29 @@ function mergeMapVenues() {
   });
 }
 
+// Same place if the names match, or one contains the other ("Spillestedet Stengade" / "Stengade").
+function sameName(a, b) {
+  const x = norm(a), y = norm(b);
+  return x === y || (Math.min(x.length, y.length) >= 5 && (x.includes(y) || y.includes(x)));
+}
+
+// Every venue in Copenhagen that OpenStreetMap knows about, so people find them without searching.
+async function loadAllPlaces() {
+  let places = [];
+  try { places = (await (await fetch("api/all-places")).json()).places || []; } catch { return; }
+  let added = 0;
+  places.forEach((p) => {
+    const same = venues.find((e) => e.id === p.id || sameName(e.name, p.name));
+    if (same) {
+      if (!same.lat) Object.assign(same, { lat: p.lat, lon: p.lon, kind: same.kind || p.kind, address: same.address || p.address });
+      return;
+    }
+    venues.push({ id: p.id, name: p.name, area: p.area, address: p.address, lat: p.lat, lon: p.lon, kind: p.kind, tags: [p.kind].filter(Boolean), auto: true });
+    added++;
+  });
+  if (added) renderResults();
+}
+
 function addMapVenue(p) {
   const all = loadMapVenues();
   all[p.id] = p;
@@ -499,10 +522,11 @@ function renderResults() {
     <li><button type="button" class="result" data-venue="${esc(v.id)}">
       <span class="result-main">
         <b>${esc(v.name)}</b>
-        <span class="muted">${esc(v.area || "")}${v.capacity ? ` · ${esc(v.capacity)} stående` : ""}</span>
+        <span class="muted">${esc([v.kind, v.area].filter(Boolean).join(" · "))}${v.capacity ? ` · ${esc(v.capacity)} stående` : ""}</span>
       </span>
       ${v.file ? `<span class="badge ok">Guide klar</span>` : v.data ? `<span class="badge ai">AI-guide</span>` : `<span class="badge">Kommer snart</span>`}
     </button></li>`).join("") + mapRow + aiRow;
+  if (!q) results.insertAdjacentHTML("afterbegin", `<li class="muted count">${found.length} spillesteder i København</li>`);
   searchMap(q);
 }
 
@@ -585,7 +609,11 @@ async function init() {
     document.getElementById("back").addEventListener("click", showSearch);
     roomSelect.addEventListener("change", renderRoom);
     renderResults();
-    if (location.hash.startsWith("#venue/")) await openVenue(location.hash.slice(7));
+    const allPlaces = loadAllPlaces();
+    if (location.hash.startsWith("#venue/")) {
+      if (!venues.some((v) => v.id === location.hash.slice(7))) await allPlaces;
+      await openVenue(location.hash.slice(7));
+    }
   } catch (err) {
     content.innerHTML = `<p>Kunne ikke indlæse data. (${esc(err.message)})</p>`;
   }
