@@ -1,0 +1,252 @@
+{
+  "id": "stengade",
+  "name": "Spillestedet Stengade",
+  "city": "København",
+  "address": "Stengade 18, 2200 København N",
+  "coordinates": {
+    "lat": 55.6889,
+    "lng": 12.555,
+    "source": "inferred (approx., from address)"
+  },
+  "website": "https://www.stengade.dk",
+  "contacts": {
+    "general": {
+      "email": "info@stengade.dk",
+      "phone": "+45 35 35 50 69"
+    },
+    "production": {
+      "name": "Sandra Kaarsgaard",
+      "email": "production@stengade.dk"
+    }
+  },
+  "profile": "Non-profit, frivilligdrevet spillested (siden 1972). Rock, punk, indie, elektronisk, hiphop.",
+  "sources": {
+    "tech_spec_pdf": "https://www.stengade.dk/s/Stengade-venue-spec-2025-v3.pdf",
+    "info_page": "https://www.stengade.dk/new-index",
+    "rental_page": "https://www.stengade.dk/udlejning"
+  },
+  "spec_version": "Stengade venue spec 2025 v3 (hentet 2026-10-04)",
+  "rooms": [
+    {
+      "id": "salen",
+      "name": "Salen (hovedscene, stueetage)",
+      "capacity": {
+        "standing": 230,
+        "standing_tickets": 200,
+        "seated": 110,
+        "seated_tickets": 99,
+        "note": "Udlejningssiden siger 75 siddende; tech spec siger 110. Tech spec antages at være nyest.",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 7,
+        "depth_m": 4,
+        "height_m": 0.5,
+        "clearance_stage_to_ceiling_m": 2.1,
+        "barricade": false,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "32A 3-faset CEE (PA/monitor/stage rack)",
+          "16A 3-faset CEE (dimmer)",
+          "16A 3-faset CEE (hazer + LED)",
+          "32A 3-faset CEE (aux)"
+        ],
+        "floor_packages": "2x 16A (3x blå CEE + 1x rød CEE separat fase) + 1x DMX split",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Allen & Heath SQ7 + 2x DX168 stagebox",
+        "pa": [
+          "2x Meyer Sound ULTRA X-40",
+          "5x Meyer Sound LFC-750 (sub)",
+          "1x Meyer Sound Galaxy 408 (processor)"
+        ],
+        "monitors": {
+          "wedges": "5x L-Acoustics X12",
+          "sends": 4,
+          "amp": "1x L-Acoustics LA4X",
+          "iem": false,
+          "iem_note": "Ingen in-ear system nævnt i spec (inferred: medbring selv)"
+        },
+        "microphones": [
+          "Shure SM52a x1",
+          "Beyerdynamic M88 x1",
+          "Shure SM58 x4",
+          "SM58a x2",
+          "SM57 x5",
+          "SM57a x1",
+          "SM91a x2",
+          "SM94 x4",
+          "Sennheiser e604 x4",
+          "AKG C535 x1",
+          "Audix i5 x1",
+          "sE V7 x4",
+          "sE V7x x4",
+          "sE VKick x1",
+          "sE VBeat x3"
+        ],
+        "di_boxes": [
+          "Radial passiv stereo x2",
+          "Radial passiv mono x2",
+          "Radial aktiv SI mono x1",
+          "Palmer passiv x2",
+          "aktiv mono DI x6"
+        ],
+        "stands": {
+          "tall_boom": 6,
+          "short_boom": 8
+        },
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "ChamSys MagicQ MQ50",
+        "rig": "Fast installation, ingen ændringer/tilføjelser/fjernelse af lamper tilladt",
+        "operator": "Frivillig lystekniker under opsyn af husets tekniker",
+        "backdrop_max": "6 x 2,2 m",
+        "projection": "Ikke standard, aftales på forhånd",
+        "restrictions": "Ingen åben ild, pyro eller brændbare materialer",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "leq15_dba": 100,
+        "leq120_dba": 96,
+        "peak_dba": 107,
+        "sub_peak_dbc": 140,
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Meyer PA, Allen & Heath SQ7, 5 L-Acoustics wedges på 4 monitormix, mikrofoner, DI-bokse og stativer til et normalt rockband, fast lysrig med frivillig lystekniker, samt trommesæt, 2 Bogner guitarforstærkere og en TC Electronic 2x10 basforstærker.",
+        "bring": [
+          {
+            "text": "Instrumenter, pedalboards, kabler til egne ting, strenge og stikker."
+          },
+          {
+            "text": "Stortrommepedal, lilletromme og evt. egne bækkener.",
+            "inferred": "Pedal er ikke nævnt, og mange trommeslagere foretrækker egen lilletromme og bækkener."
+          },
+          {
+            "text": "In-ear system, hvis I bruger det. Med kun 4 monitormix er IEM en fordel for bands med 5 eller flere.",
+            "inferred": "Intet IEM nævnt i spec."
+          },
+          {
+            "text": "Keyboard og keyboardstativ.",
+            "inferred": "Intet keys-backline nævnt."
+          },
+          {
+            "text": "Backdrop på max 6 x 2,2 m (eget lysshow er ikke muligt, fast rig). Projektion skal aftales på forhånd."
+          },
+          {
+            "text": "Egen tekniker er en god idé, men ikke krævet.",
+            "inferred": "Min vurdering."
+          }
+        ],
+        "leave_home": "PA, mixer, monitorer, mikrofoner, DI-bokse, stativer og forstærkere, hvis husets backline passer jer. Skader på husets backline trækkes fra gagen.",
+        "good_to_know": "Lydgrænse 100 dB(A) Leq15. Ingen barriere. Kun 2,1 m fra scene til loft. Load-in fra fronten, plads til max 4 varevogne, motorer slukket efter kl. 22. Kontakt: production@stengade.dk."
+      }
+    },
+    {
+      "id": "cafe-retro",
+      "name": "Café Retro / Retrograd (1. sal)",
+      "capacity": {
+        "standing": 120,
+        "seated": 50,
+        "source": "tech_spec_pdf (stående), rental_page (siddende)"
+      },
+      "stage": {
+        "width_m": 3.6,
+        "depth_m": 3.6,
+        "clearance_m": 2.6,
+        "barricade": false,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "16A 3-faset CEE (PA/monitor/stage rack)"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Soundcraft Ui16 + iPad",
+        "pa": [
+          "2x Yamaha DXR15",
+          "1x Yamaha DSB 118 (sub, som skrevet i spec)"
+        ],
+        "monitors": {
+          "wedges": "1x Turbosound iQ12",
+          "sends": 1
+        },
+        "microphones_note": "Mikrofoner og DJ-udstyr afhænger af andre events, aftales med booker/produktion",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "note": "Ikke specificeret i spec (inferred: minimalt/fast lys)"
+      },
+      "spl_limits": {
+        "leq15_dba": 92,
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Lille Yamaha PA, Soundcraft Ui16 mixer og 1 monitor. Mikrofoner aftales med booker.",
+        "bring": [
+          {
+            "text": "Backline: forstærkere og trommer."
+          },
+          {
+            "text": "Mikrofoner og DI-bokse.",
+            "inferred": "Ikke garanteret af huset."
+          },
+          {
+            "text": "Gerne in-ears eller egne monitorer (kun 1 monitor i huset)."
+          },
+          {
+            "text": "Evt. lille lys.",
+            "inferred": "Lys er ikke specificeret i spec."
+          }
+        ],
+        "leave_home": "PA og mixer.",
+        "good_to_know": "Lydgrænse kun 92 dB(A), så det passer bedst til akustisk, singer-songwriter eller DJ."
+      }
+    }
+  ],
+  "backline": {
+    "applies_to": "Salen (lån; skader trækkes fra gagen)",
+    "drums": {
+      "shells": [
+        "Tia custom 22x18 stortromme",
+        "Ludwig 14x5 lilletromme",
+        "Tia custom 12x8 tom",
+        "Tia custom 13x9 tom",
+        "Tia custom 16x16 gulvtam"
+      ],
+      "cymbals": [
+        "Istanbul Alchemy 14 hi-hat",
+        "Zildjian 16 crash",
+        "Istanbul 20 crash/ride",
+        "Istanbul Alchemy 20 ride"
+      ],
+      "hardware": "Pearl hi-hat-stativ + clutch, 2x bækkenstativ, 2x lilletromme/tam-stativ, trommestol",
+      "pedal_included": "ikke nævnt (inferred: medbring egen stortrommepedal)"
+    },
+    "guitar_amps": [
+      "2x Bogner Alchemist 20/40 W + 2x12 kabinet"
+    ],
+    "bass_amp": [
+      "TC Electronic BG500 2x10 combo"
+    ],
+    "keys": "ingen nævnt",
+    "source": "tech_spec_pdf"
+  },
+  "logistics": {
+    "load_in": "Fra fronten (Stengade)",
+    "parking": "Plads til 1 nightliner eller max 4 varevogne",
+    "bus_power": "1x 16A 3-faset CEE (på forespørgsel) + 1x 10A 1-faset CEE",
+    "noise_rules": "Motorer slukket efter kl. 22, stille ved load-out",
+    "backstage": "Kælder, kort vej til sidescene, aflåseligt",
+    "hospitality": "Varm vegansk mad, 4 lokale øl pr. person, sodavand/kaffe/vand, snacks, håndklæder",
+    "wifi": true,
+    "accessibility": "Ingen let adgang eller handicaptoilet",
+    "source": "tech_spec_pdf, info_page"
+  }
+}

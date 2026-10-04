@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venue Guide</title>
+  <meta name="description" content="Vælg et spillested i København og se hvad du skal tage med.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Venue Guide</h1>
+    <p class="lead">Vælg et spillested i København og se hvad bandet skal tage med.</p>
+    <div class="pickers">
+      <label>Spillested
+        <select id="venue"></select>
+      </label>
+      <label>Rum
+        <select id="room"></select>
+      </label>
+    </div>
+  </header>
+  <main id="content"><p class="muted">Indlæser…</p></main>
+  <footer>
+    <p class="muted">Punkter mærket <span class="tag">udledt</span> er vores vurdering, ikke stedets egne ord. Tjek altid stedets tech spec.</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
