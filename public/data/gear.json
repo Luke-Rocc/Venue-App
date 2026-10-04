@@ -1,74 +1,608 @@
 [
   {
     "id": "camera",
-    "name": "Kamera(er)"
+    "name": "Kamerahus",
+    "type": "camera",
+    "brands": [
+      {
+        "brand": "Sony",
+        "models": [
+          {
+            "model": "FX3"
+          },
+          {
+            "model": "FX30"
+          },
+          {
+            "model": "FX6"
+          },
+          {
+            "model": "FX9"
+          },
+          {
+            "model": "Burano"
+          },
+          {
+            "model": "Alpha 7S III"
+          },
+          {
+            "model": "Alpha 7 IV"
+          },
+          {
+            "model": "Alpha 1 II"
+          },
+          {
+            "model": "ZV-E1"
+          }
+        ]
+      },
+      {
+        "brand": "Canon",
+        "models": [
+          {
+            "model": "EOS C70"
+          },
+          {
+            "model": "EOS C80"
+          },
+          {
+            "model": "EOS C300 Mark III"
+          },
+          {
+            "model": "EOS C400"
+          },
+          {
+            "model": "EOS R5 C"
+          },
+          {
+            "model": "EOS R5 Mark II"
+          },
+          {
+            "model": "EOS R6 Mark II"
+          }
+        ]
+      },
+      {
+        "brand": "Blackmagic Design",
+        "models": [
+          {
+            "model": "Pocket Cinema Camera 4K"
+          },
+          {
+            "model": "Pocket Cinema Camera 6K Pro"
+          },
+          {
+            "model": "Cinema Camera 6K"
+          },
+          {
+            "model": "PYXIS 6K"
+          },
+          {
+            "model": "URSA Cine 12K LF"
+          }
+        ]
+      },
+      {
+        "brand": "Panasonic",
+        "models": [
+          {
+            "model": "Lumix S5 II"
+          },
+          {
+            "model": "Lumix S5 IIX"
+          },
+          {
+            "model": "Lumix S1H"
+          },
+          {
+            "model": "Lumix GH6"
+          },
+          {
+            "model": "Lumix GH7"
+          }
+        ]
+      },
+      {
+        "brand": "Nikon",
+        "models": [
+          {
+            "model": "Z6III"
+          },
+          {
+            "model": "Z8"
+          },
+          {
+            "model": "Z9"
+          }
+        ]
+      },
+      {
+        "brand": "Fujifilm",
+        "models": [
+          {
+            "model": "X-H2S"
+          },
+          {
+            "model": "X-H2"
+          },
+          {
+            "model": "GFX100 II"
+          }
+        ]
+      },
+      {
+        "brand": "RED",
+        "models": [
+          {
+            "model": "KOMODO 6K"
+          },
+          {
+            "model": "KOMODO-X"
+          },
+          {
+            "model": "V-RAPTOR"
+          }
+        ]
+      },
+      {
+        "brand": "ARRI",
+        "models": [
+          {
+            "model": "ALEXA Mini LF"
+          },
+          {
+            "model": "ALEXA 35"
+          }
+        ]
+      },
+      {
+        "brand": "DJI",
+        "models": [
+          {
+            "model": "Ronin 4D"
+          },
+          {
+            "model": "Osmo Pocket 3"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "wide_lens",
-    "name": "Vidvinkelobjektiv"
+    "id": "lens",
+    "name": "Objektiv",
+    "type": "lens",
+    "brands": [
+      {
+        "brand": "Sony",
+        "models": [
+          {
+            "model": "FE 16-35mm F2.8 GM II",
+            "type": "wide_lens"
+          },
+          {
+            "model": "FE 24-70mm F2.8 GM II",
+            "type": "lens"
+          },
+          {
+            "model": "FE 70-200mm F2.8 GM OSS II",
+            "type": "tele_lens"
+          },
+          {
+            "model": "FE 35mm F1.4 GM",
+            "type": "fast_lens"
+          },
+          {
+            "model": "FE 50mm F1.2 GM",
+            "type": "fast_lens"
+          },
+          {
+            "model": "FE PZ 16-35mm F4 G",
+            "type": "wide_lens"
+          }
+        ]
+      },
+      {
+        "brand": "Canon",
+        "models": [
+          {
+            "model": "RF 15-35mm F2.8 L IS USM",
+            "type": "wide_lens"
+          },
+          {
+            "model": "RF 24-70mm F2.8 L IS USM",
+            "type": "lens"
+          },
+          {
+            "model": "RF 70-200mm F2.8 L IS USM",
+            "type": "tele_lens"
+          },
+          {
+            "model": "RF 50mm F1.2 L USM",
+            "type": "fast_lens"
+          },
+          {
+            "model": "CN-E 24mm T1.5 L F",
+            "type": "fast_lens"
+          }
+        ]
+      },
+      {
+        "brand": "Sigma",
+        "models": [
+          {
+            "model": "18-35mm F1.8 DC HSM | Art",
+            "type": "fast_lens"
+          },
+          {
+            "model": "14-24mm F2.8 DG DN | Art",
+            "type": "wide_lens"
+          },
+          {
+            "model": "24-70mm F2.8 DG DN II | Art",
+            "type": "lens"
+          },
+          {
+            "model": "35mm F1.4 DG DN | Art",
+            "type": "fast_lens"
+          },
+          {
+            "model": "70-200mm F2.8 DG DN OS | Sports",
+            "type": "tele_lens"
+          }
+        ]
+      },
+      {
+        "brand": "Tamron",
+        "models": [
+          {
+            "model": "17-28mm F/2.8 Di III RXD",
+            "type": "wide_lens"
+          },
+          {
+            "model": "28-75mm F/2.8 Di III VXD G2",
+            "type": "lens"
+          },
+          {
+            "model": "70-180mm F/2.8 Di III VXD G2",
+            "type": "tele_lens"
+          }
+        ]
+      },
+      {
+        "brand": "Panasonic",
+        "models": [
+          {
+            "model": "Lumix S 20-60mm F3.5-5.6",
+            "type": "wide_lens"
+          },
+          {
+            "model": "Lumix S PRO 24-70mm F2.8",
+            "type": "lens"
+          },
+          {
+            "model": "Lumix S 50mm F1.8",
+            "type": "fast_lens"
+          }
+        ]
+      },
+      {
+        "brand": "Nikon",
+        "models": [
+          {
+            "model": "NIKKOR Z 14-24mm f/2.8 S",
+            "type": "wide_lens"
+          },
+          {
+            "model": "NIKKOR Z 24-70mm f/2.8 S",
+            "type": "lens"
+          },
+          {
+            "model": "NIKKOR Z 70-200mm f/2.8 VR S",
+            "type": "tele_lens"
+          },
+          {
+            "model": "NIKKOR Z 50mm f/1.2 S",
+            "type": "fast_lens"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "fast_lens",
-    "name": "Lysstærkt objektiv (f/1.8 eller bedre)"
+    "id": "audio",
+    "name": "Lyd",
+    "type": "recorder",
+    "brands": [
+      {
+        "brand": "Zoom",
+        "models": [
+          {
+            "model": "F3",
+            "type": "recorder"
+          },
+          {
+            "model": "F6",
+            "type": "recorder"
+          },
+          {
+            "model": "F8n Pro",
+            "type": "recorder"
+          },
+          {
+            "model": "H6essential",
+            "type": "recorder"
+          }
+        ]
+      },
+      {
+        "brand": "Sound Devices",
+        "models": [
+          {
+            "model": "MixPre-3 II",
+            "type": "recorder"
+          },
+          {
+            "model": "MixPre-6 II",
+            "type": "recorder"
+          },
+          {
+            "model": "888",
+            "type": "recorder"
+          }
+        ]
+      },
+      {
+        "brand": "RØDE",
+        "models": [
+          {
+            "model": "VideoMic NTG",
+            "type": "camera_mic"
+          },
+          {
+            "model": "NTG5",
+            "type": "camera_mic"
+          },
+          {
+            "model": "Wireless PRO",
+            "type": "lav_mic"
+          },
+          {
+            "model": "Wireless GO II",
+            "type": "lav_mic"
+          }
+        ]
+      },
+      {
+        "brand": "Sennheiser",
+        "models": [
+          {
+            "model": "MKE 600",
+            "type": "camera_mic"
+          },
+          {
+            "model": "MKE 400",
+            "type": "camera_mic"
+          },
+          {
+            "model": "EW-DP ME 2 SET",
+            "type": "lav_mic"
+          }
+        ]
+      },
+      {
+        "brand": "DJI",
+        "models": [
+          {
+            "model": "Mic 2",
+            "type": "lav_mic"
+          },
+          {
+            "model": "Mic Mini",
+            "type": "lav_mic"
+          }
+        ]
+      },
+      {
+        "brand": "Deity",
+        "models": [
+          {
+            "model": "V-Mic D3 Pro",
+            "type": "camera_mic"
+          },
+          {
+            "model": "THEOS",
+            "type": "lav_mic"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "tele_lens",
-    "name": "Telezoom"
+    "id": "light",
+    "name": "Lys",
+    "type": "led_light",
+    "brands": [
+      {
+        "brand": "Aputure",
+        "models": [
+          {
+            "model": "LS 300x"
+          },
+          {
+            "model": "LS 600d Pro"
+          },
+          {
+            "model": "Amaran 200d S"
+          },
+          {
+            "model": "Amaran 200x S"
+          },
+          {
+            "model": "Nova P300c"
+          },
+          {
+            "model": "MC Pro"
+          }
+        ]
+      },
+      {
+        "brand": "Nanlite",
+        "models": [
+          {
+            "model": "Forza 60B II"
+          },
+          {
+            "model": "Forza 150B"
+          },
+          {
+            "model": "PavoTube II 15C"
+          },
+          {
+            "model": "PavoTube II 30C"
+          }
+        ]
+      },
+      {
+        "brand": "Godox",
+        "models": [
+          {
+            "model": "SL60W"
+          },
+          {
+            "model": "UL150 II"
+          },
+          {
+            "model": "LC500R"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "gimbal",
-    "name": "Gimbal"
+    "id": "support",
+    "name": "Stabilisering og stativ",
+    "type": "gimbal",
+    "brands": [
+      {
+        "brand": "DJI",
+        "models": [
+          {
+            "model": "RS 4",
+            "type": "gimbal"
+          },
+          {
+            "model": "RS 4 Pro",
+            "type": "gimbal"
+          },
+          {
+            "model": "RS 4 Mini",
+            "type": "gimbal"
+          }
+        ]
+      },
+      {
+        "brand": "Zhiyun",
+        "models": [
+          {
+            "model": "CRANE 4",
+            "type": "gimbal"
+          },
+          {
+            "model": "WEEBILL 3S",
+            "type": "gimbal"
+          }
+        ]
+      },
+      {
+        "brand": "Sachtler",
+        "models": [
+          {
+            "model": "Flowtech 75 med aktiv 8",
+            "type": "tripod"
+          },
+          {
+            "model": "Ace XL",
+            "type": "tripod"
+          }
+        ]
+      },
+      {
+        "brand": "Manfrotto",
+        "models": [
+          {
+            "model": "504X med 645 Fast Twin",
+            "type": "tripod"
+          },
+          {
+            "model": "XPRO videomonopod",
+            "type": "tripod"
+          }
+        ]
+      },
+      {
+        "brand": "SmallRig",
+        "models": [
+          {
+            "model": "AD-01 videostativ",
+            "type": "tripod"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "tripod",
-    "name": "Stativ / monopod"
+    "id": "stream",
+    "name": "Livestream",
+    "type": "stream_encoder",
+    "brands": [
+      {
+        "brand": "Blackmagic Design",
+        "models": [
+          {
+            "model": "ATEM Mini Pro"
+          },
+          {
+            "model": "ATEM Mini Extreme ISO"
+          },
+          {
+            "model": "Web Presenter 4K"
+          }
+        ]
+      },
+      {
+        "brand": "Teradek",
+        "models": [
+          {
+            "model": "VidiU X"
+          },
+          {
+            "model": "Prism Mobile"
+          }
+        ]
+      },
+      {
+        "brand": "LiveU",
+        "models": [
+          {
+            "model": "Solo PRO"
+          }
+        ]
+      },
+      {
+        "brand": "YoloLiv",
+        "models": [
+          {
+            "model": "YoloBox Ultra"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "batteries",
-    "name": "Ekstra batterier"
-  },
-  {
-    "id": "cards",
-    "name": "Hukommelseskort"
-  },
-  {
-    "id": "recorder",
-    "name": "Ekstern lydoptager"
-  },
-  {
-    "id": "xlr",
-    "name": "XLR-kabler"
-  },
-  {
-    "id": "camera_mic",
-    "name": "Kameramikrofon"
-  },
-  {
-    "id": "lav_mic",
-    "name": "Lavalier / trådløs mikrofon"
-  },
-  {
-    "id": "led_light",
-    "name": "LED-lys"
-  },
-  {
-    "id": "light_stand",
-    "name": "Lysstativer"
-  },
-  {
-    "id": "stream_encoder",
-    "name": "Livestream-encoder"
-  },
-  {
-    "id": "laptop",
-    "name": "Laptop"
-  },
-  {
-    "id": "power",
-    "name": "Forlængerledning og stikdåse"
-  },
-  {
-    "id": "tape",
-    "name": "Gaffatape"
+    "id": "other",
+    "name": "Andet",
+    "type": "other",
+    "brands": []
   }
 ]

@@ -6,7 +6,8 @@ const profileForm = document.getElementById("profile-form");
 const gearForm = document.getElementById("gear-form");
 
 const PROFILE_KEY = "venue-video:profile";
-const GEAR_KEY = "venue-video:gear";
+const GEAR_KEY = "venue-video:kit";
+const SOCIAL = ["instagram", "youtube", "vimeo", "tiktok", "linkedin", "website"];
 let venue = null;
 let gearCatalog = [];
 
@@ -32,6 +33,8 @@ function fillProfileForm() {
     box.checked = (p.jobs || []).includes(box.value);
   });
   profileForm.soundTech.checked = Boolean(p.soundTech);
+  SOCIAL.forEach((k) => { profileForm[k].value = p.social?.[k] || ""; });
+  renderSocialLinks(p);
 }
 
 function saveProfile() {
@@ -40,6 +43,7 @@ function saveProfile() {
     operators: parseInt(profileForm.operators.value, 10) || null,
     jobs: [...profileForm.querySelectorAll("input[name=jobs]:checked")].map((b) => b.value),
     soundTech: profileForm.soundTech.checked,
+    social: Object.fromEntries(SOCIAL.map((k) => [k, profileForm[k].value.trim()]).filter(([, v]) => v)),
   };
   try {
     localStorage.setItem(PROFILE_KEY, JSON.stringify(p));
@@ -47,57 +51,175 @@ function saveProfile() {
   } catch {
     document.getElementById("saved").textContent = "Kunne ikke gemme på denne enhed.";
   }
+  renderSocialLinks(p);
   if (venue) renderRoom();
+}
+
+const SOCIAL_LABELS = { instagram: "Instagram", youtube: "YouTube", vimeo: "Vimeo", tiktok: "TikTok", linkedin: "LinkedIn", website: "Hjemmeside" };
+const SOCIAL_BASE = {
+  instagram: "https://instagram.com/",
+  youtube: "https://youtube.com/@",
+  vimeo: "https://vimeo.com/",
+  tiktok: "https://tiktok.com/@",
+  linkedin: "https://linkedin.com/in/",
+  website: "https://",
+};
+
+// Turns a handle or a pasted link into a full https URL.
+function socialUrl(key, value) {
+  if (/^https?:\/\//i.test(value)) return value;
+  if (/^(www\.)?[\w-]+\.[a-z]{2,}\//i.test(value) && key !== "website") return "https://" + value;
+  return SOCIAL_BASE[key] + value.replace(/^@/, "");
+}
+
+function renderSocialLinks(p) {
+  const links = Object.entries(p.social || {}).map(([k, v]) =>
+    `<a href="${esc(socialUrl(k, v))}" target="_blank" rel="noopener">${esc(SOCIAL_LABELS[k])}</a>`);
+  document.getElementById("social-links").innerHTML = links.length ? `<span class="muted">Jeres links:</span> ${links.join("")}` : "";
 }
 
 // Gear
 
-function loadGear() {
-  try { return JSON.parse(localStorage.getItem(GEAR_KEY)) || { owned: [], notes: "" }; } catch { return { owned: [], notes: "" }; }
+function loadKit() {
+  try { return JSON.parse(localStorage.getItem(GEAR_KEY)) || { items: [] }; } catch { return { items: [] }; }
 }
 
-function ownsGear(id) {
-  return (loadGear().owned || []).includes(id);
-}
-
-function renderGearForm() {
-  const g = loadGear();
-  document.getElementById("gear-list").innerHTML = gearCatalog.map((item) => `
-    <li><label>
-      <input type="checkbox" name="owned" value="${esc(item.id)}" ${(g.owned || []).includes(item.id) ? "checked" : ""}>
-      <span>${esc(item.name)}</span>
-    </label></li>`).join("");
-  gearForm.notes.value = g.notes || "";
-}
-
-function saveGear() {
-  const g = {
-    owned: [...gearForm.querySelectorAll("input[name=owned]:checked")].map((b) => b.value),
-    notes: gearForm.notes.value,
-  };
-  try {
-    localStorage.setItem(GEAR_KEY, JSON.stringify(g));
-    document.getElementById("gear-saved").textContent = "Gemt.";
-  } catch {
-    document.getElementById("gear-saved").textContent = "Kunne ikke gemme på denne enhed.";
-  }
+function saveKit(kit) {
+  try { localStorage.setItem(GEAR_KEY, JSON.stringify(kit)); } catch {}
+  renderKit();
   if (venue) renderRoom();
 }
 
-// Splits the band's own gear into what to bring and what the house already has.
+function ownsGear(type) {
+  return loadKit().items.some((i) => i.type === type);
+}
+
+function itemLabel(i) {
+  return `${i.qty > 1 ? i.qty + "× " : ""}${i.brand ? i.brand + " " : ""}${i.model}`;
+}
+
+function option(value, label) {
+  return `<option value="${esc(value)}">${esc(label)}</option>`;
+}
+
+function currentCategory() {
+  return gearCatalog.find((c) => c.id === gearForm.category.value);
+}
+
+function currentBrand() {
+  return (currentCategory()?.brands || []).find((b) => b.brand === gearForm.brand.value);
+}
+
+// Cascading pickers: category -> brand -> model, with "Andet" for anything not listed.
+function fillBrands() {
+  const brands = currentCategory()?.brands || [];
+  gearForm.brand.innerHTML = option("", "Vælg fabrikant") + brands.map((b) => option(b.brand, b.brand)).join("") + option("__other", "Andet");
+  if (!brands.length) gearForm.brand.value = "__other";
+  fillModels();
+}
+
+function fillModels() {
+  const brand = currentBrand();
+  const other = gearForm.brand.value === "__other";
+  gearForm.model.innerHTML = option("", "Vælg model") + (brand?.models || []).map((m) => option(m.model, m.model)).join("") + option("__other", "Andet");
+  gearForm.querySelector("[data-row=brand]").hidden = !(currentCategory()?.brands || []).length;
+  gearForm.querySelector("[data-row=model]").hidden = other || !gearForm.brand.value;
+  toggleCustom();
+}
+
+function toggleCustom() {
+  const custom = gearForm.brand.value === "__other" || gearForm.model.value === "__other";
+  gearForm.querySelector("[data-row=custom]").hidden = !custom;
+  updatePreview();
+}
+
+function pickedItem() {
+  const cat = currentCategory();
+  if (!cat) return null;
+  const qty = Math.max(1, parseInt(gearForm.qty.value, 10) || 1);
+  const brandOther = gearForm.brand.value === "__other";
+  const modelOther = gearForm.model.value === "__other";
+  if (brandOther || modelOther) {
+    const name = gearForm.custom.value.trim();
+    if (!name) return null;
+    return { category: cat.id, brand: brandOther ? "" : gearForm.brand.value, model: name, qty, type: cat.type };
+  }
+  const model = (currentBrand()?.models || []).find((m) => m.model === gearForm.model.value);
+  if (!model) return null;
+  return { category: cat.id, brand: gearForm.brand.value, model: model.model, qty, type: model.type || cat.type };
+}
+
+function updatePreview() {
+  const item = pickedItem();
+  document.getElementById("gear-preview").textContent = item ? itemLabel(item) : "";
+  gearForm.querySelector("button[type=submit]").disabled = !item;
+}
+
+function addItem(e) {
+  e.preventDefault();
+  const item = pickedItem();
+  if (!item) return;
+  const kit = loadKit();
+  const same = kit.items.find((i) => i.brand === item.brand && i.model === item.model);
+  if (same) same.qty += item.qty;
+  else kit.items.push({ id: Date.now().toString(36), ...item });
+  saveKit(kit);
+  gearForm.model.value = "";
+  gearForm.custom.value = "";
+  gearForm.qty.value = 1;
+  toggleCustom();
+}
+
+function renderKit() {
+  const kit = loadKit();
+  const el = document.getElementById("kit");
+  if (!kit.items.length) {
+    el.innerHTML = `<p class="muted">Intet udstyr endnu. Tilføj jeres første kamera ovenfor.</p>`;
+    return;
+  }
+  el.innerHTML = gearCatalog.map((cat) => {
+    const items = kit.items.filter((i) => i.category === cat.id);
+    if (!items.length) return "";
+    return `<div class="kit-group"><div class="kit-cat">${esc(cat.name)}</div>
+      <ul class="kit-list">${items.map((i) => `
+        <li><span>${esc(itemLabel(i))}</span>
+          <button type="button" class="remove" data-remove="${esc(i.id)}" aria-label="Fjern ${esc(itemLabel(i))}">×</button></li>`).join("")}
+      </ul></div>`;
+  }).join("");
+}
+
+function initGear() {
+  gearForm.category.innerHTML = gearCatalog.map((c) => option(c.id, c.name)).join("");
+  gearForm.category.addEventListener("change", fillBrands);
+  gearForm.brand.addEventListener("change", fillModels);
+  gearForm.model.addEventListener("change", toggleCustom);
+  gearForm.custom.addEventListener("input", updatePreview);
+  gearForm.qty.addEventListener("input", updatePreview);
+  gearForm.addEventListener("submit", addItem);
+  document.getElementById("kit").addEventListener("click", (e) => {
+    const id = e.target.closest("[data-remove]")?.dataset.remove;
+    if (!id) return;
+    const kit = loadKit();
+    kit.items = kit.items.filter((i) => i.id !== id);
+    saveKit(kit);
+  });
+  fillBrands();
+  renderKit();
+}
+
+// Splits the crew's own kit into what to bring and what the house already has.
 function ownGearSection(room) {
-  const g = loadGear();
-  const owned = gearCatalog.filter((item) => (g.owned || []).includes(item.id));
-  if (!owned.length) {
-    return `<p class="muted">Tip: kryds jeres udstyr af under <a href="#" data-goto="gear">Gear</a>, så ser I hvad der skal med.</p>`;
+  const items = loadKit().items;
+  if (!items.length) {
+    return `<p class="muted">Tip: byg jeres kit under <a href="#" data-goto="gear">Gear</a>, så ser I hvad der skal med.</p>`;
   }
   const provided = room.gear?.house_provides || [];
-  const bring = owned.filter((item) => !provided.includes(item.id));
-  const leave = owned.filter((item) => provided.includes(item.id));
-  const list = (items) => items.length ? `<ul>${items.map((i) => `<li>${esc(i.name)}</li>`).join("")}</ul>` : `<p class="muted">Intet.</p>`;
-  return `<section class="card"><h3>Jeres gear her</h3>
+  const bring = items.filter((i) => !provided.includes(i.type));
+  const leave = items.filter((i) => provided.includes(i.type));
+  const list = (xs) => xs.length ? `<ul>${xs.map((i) => `<li>${esc(itemLabel(i))}</li>`).join("")}</ul>` : `<p class="muted">Intet.</p>`;
+  return `<section class="card"><h3>Jeres kit her</h3>
     <div class="split">
-      <div><b>Tag med</b>${list(bring)}${g.notes ? `<p class="muted">Andet: ${esc(g.notes)}</p>` : ""}</div>
+      <div><b>Tag med</b>${list(bring)}</div>
       <div><b>Huset har (kan blive hjemme)</b>${list(leave)}</div>
     </div></section>`;
 }
@@ -203,15 +325,13 @@ document.addEventListener("click", (e) => {
 
 async function init() {
   fillProfileForm();
-  gearForm.addEventListener("input", saveGear);
-  gearForm.addEventListener("submit", (e) => e.preventDefault());
   profileForm.addEventListener("input", saveProfile);
   profileForm.addEventListener("submit", (e) => e.preventDefault());
   showTab(["profile", "gear"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "venues");
 
   try {
     gearCatalog = await (await fetch("data/gear.json")).json();
-    renderGearForm();
+    initGear();
     const venues = await (await fetch("data/venues.json")).json();
     venueSelect.innerHTML = venues.map((v) => `<option value="${esc(v.id)}">${esc(v.name)}</option>`).join("");
     venueSelect.addEventListener("change", () => loadVenue(venues.find((v) => v.id === venueSelect.value)));

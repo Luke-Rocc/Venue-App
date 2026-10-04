@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Venue Video Guide</title>
   <meta name="description" content="Vælg et spillested i København og se hvilket videoudstyr du skal tage med.">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
   <header>
@@ -35,14 +35,35 @@
 
   <section id="tab-gear" role="tabpanel" hidden>
     <div class="wrap">
-      <p class="lead">Kryds af hvad I selv har. Under Venue ser I så, hvad af det I skal tage med, og hvad huset allerede har.</p>
+      <p class="lead">Byg jeres kit. Under Venue ser I så, hvad der skal med, og hvad huset allerede har.</p>
       <form id="gear-form" class="card">
-        <ul class="check" id="gear-list"></ul>
-        <label class="field gear-notes">Andet udstyr
-          <textarea name="notes" rows="3" placeholder="Fx slider, ND-filtre, ekstra skærm"></textarea>
-        </label>
-        <p id="gear-saved" class="muted" aria-live="polite"></p>
+        <h3>Tilføj udstyr</h3>
+        <div class="picker">
+          <label class="field">Kategori
+            <select name="category"></select>
+          </label>
+          <label class="field" data-row="brand">Fabrikant
+            <select name="brand"></select>
+          </label>
+          <label class="field" data-row="model">Model
+            <select name="model"></select>
+          </label>
+          <label class="field" data-row="custom" hidden>Navn
+            <input name="custom" type="text" placeholder="Fx Atomos Ninja V+" autocomplete="off">
+          </label>
+          <label class="field qty">Antal
+            <input name="qty" type="number" min="1" max="99" value="1">
+          </label>
+        </div>
+        <div class="preview-row">
+          <span id="gear-preview" class="preview"></span>
+          <button type="submit" class="primary">Tilføj til kit</button>
+        </div>
       </form>
+      <section class="card">
+        <h3>Mit kit</h3>
+        <div id="kit"></div>
+      </section>
     </div>
   </section>
 
@@ -71,11 +92,23 @@
             <label><input type="checkbox" name="soundTech"> Egen lydperson</label>
           </div>
         </fieldset>
+        <fieldset class="field">
+          <legend>Sociale medier og links</legend>
+          <div class="social">
+            <label>Instagram <input name="instagram" type="text" placeholder="@brugernavn" autocomplete="off"></label>
+            <label>YouTube <input name="youtube" type="text" placeholder="@kanal eller link" autocomplete="off"></label>
+            <label>Vimeo <input name="vimeo" type="text" placeholder="brugernavn eller link" autocomplete="off"></label>
+            <label>TikTok <input name="tiktok" type="text" placeholder="@brugernavn" autocomplete="off"></label>
+            <label>LinkedIn <input name="linkedin" type="text" placeholder="link til profil" autocomplete="off"></label>
+            <label>Hjemmeside <input name="website" type="text" placeholder="www.ditfirma.dk" autocomplete="off"></label>
+          </div>
+        </fieldset>
+        <div id="social-links" class="social-links"></div>
         <p id="saved" class="muted" aria-live="polite"></p>
       </form>
     </div>
   </section>
 
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>
