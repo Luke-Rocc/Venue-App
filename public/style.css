@@ -173,3 +173,36 @@ button.result:hover { border-color: var(--accent); }
 .badge.ok { background: var(--accent); color: #fff; }
 button.link { appearance: none; border: 0; background: none; color: var(--accent); font: inherit; padding: 0; margin-bottom: 16px; cursor: pointer; }
 .room-picker { max-width: 360px; }
+
+/* Intro: zoom into a camera lens */
+#intro {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  background: #0b0b0d;
+  cursor: pointer;
+  animation: intro-out 0.5s ease-in 1.9s forwards;
+}
+#intro .lens {
+  width: min(60vw, 280px);
+  animation: lens-zoom 2.2s cubic-bezier(.6, 0, .4, 1) forwards;
+  transform-origin: 50% 50%;
+}
+#intro .barrel { fill: #1c1c20; stroke: #34343a; stroke-width: 2; }
+#intro .ring { fill: none; stroke: #2a2a30; stroke-width: 6; }
+#intro .ticks line { stroke: #6b6b70; stroke-width: 1.2; }
+#intro .ring2 { fill: #121215; stroke: #3a3a40; stroke-width: 2; }
+#intro .glass { fill: #0d1830; }
+#intro .blades path { fill: #18181c; stroke: #2c2c33; stroke-width: 0.8; transform-box: view-box; transform-origin: 100px 100px; animation: aperture 1.4s ease-out 0.2s forwards; }
+#intro .rim { fill: none; stroke: #c2410c; stroke-width: 1.5; opacity: 0.8; }
+#intro .glare { fill: #fff; opacity: 0.12; }
+#intro .intro-title { color: #ececef; font-weight: 700; font-size: 1.3rem; letter-spacing: 0.04em; animation: fade-out 0.4s ease 1s forwards; }
+#intro .intro-skip { position: absolute; bottom: 32px; color: #6b6b70; font-size: 0.85rem; }
+#intro.done { animation: intro-out 0.3s ease-in forwards; }
+@keyframes lens-zoom {
+  0% { transform: scale(1) rotate(0deg); }
+  55% { transform: scale(1.15) rotate(25deg); }
+  100% { transform: scale(14) rotate(40deg); }
+}
+@keyframes aperture { to { transform: scale(0.15) rotate(30deg); opacity: 0; } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes intro-out { to { opacity: 0; visibility: hidden; } }

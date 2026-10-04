@@ -403,4 +403,17 @@ async function init() {
   }
 }
 
+// Intro animation: runs once per session, tap to skip.
+const intro = document.getElementById("intro");
+if (intro) {
+  try { sessionStorage.setItem("introSeen", "1"); } catch {}
+  const close = () => {
+    intro.classList.add("done");
+    setTimeout(() => intro.remove(), 300);
+  };
+  intro.addEventListener("click", close);
+  document.addEventListener("keydown", close, { once: true });
+  setTimeout(() => intro.remove(), 2500);
+}
+
 init();
