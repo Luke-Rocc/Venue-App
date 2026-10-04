@@ -257,6 +257,40 @@ function stat(value, label) {
   return value == null ? "" : `<div class="stat"><b>${esc(value)}</b><span>${esc(label)}</span></div>`;
 }
 
+// Floor plan: drawn from room.floor_plan, coordinates in metres from the top-left corner (stage at the top).
+
+const PLAN_POINTS = { camera: "Kamera", power: "Strøm", info: "Info" };
+
+function floorPlan(room) {
+  const plan = room.floor_plan;
+  if (!plan) return "";
+  const W = plan.width_m, D = plan.depth_m, s = 50, pad = 20;
+  const X = (m) => (m * s + pad).toFixed(1);
+  const L = (m) => (m * s).toFixed(1);
+  let n = 0;
+  const legend = [];
+  const shapes = plan.items.map((it) => {
+    if (it.w != null) {
+      const cx = it.x + it.w / 2, cy = it.y + it.h / 2;
+      return `<rect class="plan-${esc(it.kind)}${it.known ? "" : " plan-approx"}" x="${X(it.x)}" y="${X(it.y)}" width="${L(it.w)}" height="${L(it.h)}" rx="4"/>
+        ${it.label ? `<text x="${X(cx)}" y="${X(cy)}" dy="0.35em">${esc(it.label)}</text>` : ""}`;
+    }
+    n += 1;
+    legend.push(`<li><span class="plan-dot plan-${esc(it.kind)}">${n}</span><b>${PLAN_POINTS[it.kind] || ""}</b> ${esc(it.text)}</li>`);
+    return `<g class="plan-point plan-${esc(it.kind)}"><circle cx="${X(it.x)}" cy="${X(it.y)}" r="16"/><text x="${X(it.x)}" y="${X(it.y)}" dy="0.35em">${n}</text></g>`;
+  }).join("");
+  const w = W * s + pad * 2, h = D * s + pad * 2 + 12;
+  return `<section class="card"><h3>Plantegning${plan.approx ? ' <span class="tag">skitse</span>' : ""}</h3>
+    <svg class="plan" viewBox="0 0 ${w} ${h}" role="img" aria-label="Plantegning af ${esc(room.name)}">
+      <rect class="plan-room" x="${pad}" y="${pad}" width="${L(W)}" height="${L(D)}"/>
+      ${shapes}
+      <g class="plan-scale"><line x1="${X(W - 2)}" x2="${X(W)}" y1="${h - 6}" y2="${h - 6}"/><text x="${X(W - 1)}" y="${h - 10}">2 m</text></g>
+    </svg>
+    <ol class="plan-legend">${legend.join("")}</ol>
+    ${plan.note ? `<p class="muted">${esc(plan.note)}</p>` : ""}
+  </section>`;
+}
+
 function renderRoom() {
   const room = venue.rooms.find((r) => r.id === roomSelect.value);
   if (!room) return;
@@ -292,6 +326,7 @@ function renderRoom() {
       </div>
     </section>
     ${forYou}
+    ${floorPlan(room)}
     ${ownGearSection(room)}
     <section class="card"><h3>Tag med</h3><ul class="check">${bring}</ul></section>
     <section class="card"><h3>Huset har</h3><p>${esc(gear.house_has)}</p></section>

@@ -164,6 +164,122 @@
           "led_light",
           "light_stand"
         ]
+      },
+      "floor_plan": {
+        "approx": true,
+        "width_m": 12,
+        "depth_m": 12,
+        "note": "Skitse. Kun scenens mål (7 x 4 m, 0,5 m høj) og kapacitet kommer fra tech spec. Rummets størrelse og placeringen af bar, FOH, indgang og strøm er anslået. Tjek med huset før I planlægger kamerapositioner.",
+        "items": [
+          {
+            "kind": "stage",
+            "label": "Scene 7 x 4 m",
+            "x": 2.5,
+            "y": 0,
+            "w": 7,
+            "h": 4,
+            "known": true
+          },
+          {
+            "kind": "backstage",
+            "label": "Sidescene",
+            "x": 9.5,
+            "y": 0,
+            "w": 2.5,
+            "h": 2.6
+          },
+          {
+            "kind": "pa",
+            "label": "PA",
+            "x": 1.4,
+            "y": 2.9,
+            "w": 1.1,
+            "h": 1.1
+          },
+          {
+            "kind": "pa",
+            "label": "PA",
+            "x": 9.5,
+            "y": 2.9,
+            "w": 1.1,
+            "h": 1.1
+          },
+          {
+            "kind": "floor",
+            "label": "Publikum · 230 stående",
+            "x": 2,
+            "y": 5,
+            "w": 8,
+            "h": 3.6,
+            "known": true
+          },
+          {
+            "kind": "foh",
+            "label": "FOH",
+            "x": 4.5,
+            "y": 9,
+            "w": 3,
+            "h": 1.4
+          },
+          {
+            "kind": "bar",
+            "label": "Bar",
+            "x": 0,
+            "y": 6,
+            "w": 1.2,
+            "h": 5
+          },
+          {
+            "kind": "door",
+            "label": "Indgang",
+            "x": 8.4,
+            "y": 11.7,
+            "w": 2.2,
+            "h": 0.3
+          },
+          {
+            "kind": "power",
+            "x": 3.2,
+            "y": 0.6,
+            "text": "Strøm på scenen: 32A og 16A 3-faset CEE plus 2 gulvpakker (16A) og DMX-split. Spørg om et ledigt udtag til opladning."
+          },
+          {
+            "kind": "info",
+            "x": 10.75,
+            "y": 2.15,
+            "text": "Sidescene med kort vej ned til backstage i kælderen (aflåseligt). God plads til tasker og ladestation."
+          },
+          {
+            "kind": "info",
+            "x": 8.1,
+            "y": 9.7,
+            "text": "FOH: Allen & Heath SQ7 lydpult og ChamSys lyspult. Her tager I lyd-feed fra pulten."
+          },
+          {
+            "kind": "info",
+            "x": 11.2,
+            "y": 11.2,
+            "text": "Indgang og load-in fra Stengade. Bil/varevogn holder ude foran."
+          },
+          {
+            "kind": "camera",
+            "x": 6,
+            "y": 11,
+            "text": "Kamera bag FOH med telezoom: totalbillede over publikum."
+          },
+          {
+            "kind": "camera",
+            "x": 1.5,
+            "y": 4.6,
+            "text": "Kamera ved scenekanten (venstre) med vidvinkel. Ingen barriere, så stå fast og hold kablerne væk fra publikum."
+          },
+          {
+            "kind": "camera",
+            "x": 10.5,
+            "y": 4.6,
+            "text": "Kamera ved scenekanten (højre) eller fra sidescenen."
+          }
+        ]
       }
     },
     {
@@ -235,6 +351,72 @@
         "leave_home": "Store stativer og kraner. Der er ikke plads.",
         "good_to_know": "Lydgrænsen er 92 dB(A), så typisk akustisk musik eller DJ. Godt til intime optagelser og interviews. Aftal alt med booker/produktion, da udstyret afhænger af andre events.",
         "house_provides": []
+      },
+      "floor_plan": {
+        "approx": true,
+        "width_m": 9,
+        "depth_m": 8,
+        "note": "Skitse. Kun scenens mål (3,6 x 3,6 m, 2,6 m loft) og kapacitet kommer fra tech spec. Resten er anslået.",
+        "items": [
+          {
+            "kind": "stage",
+            "label": "Scene",
+            "x": 2.7,
+            "y": 0,
+            "w": 3.6,
+            "h": 3.6,
+            "known": true
+          },
+          {
+            "kind": "floor",
+            "label": "Publikum · 120 stående",
+            "x": 1.5,
+            "y": 4.4,
+            "w": 6,
+            "h": 2.2,
+            "known": true
+          },
+          {
+            "kind": "bar",
+            "label": "Bar",
+            "x": 7.8,
+            "y": 3.5,
+            "w": 1.2,
+            "h": 4
+          },
+          {
+            "kind": "door",
+            "label": "Trappe",
+            "x": 0.5,
+            "y": 7.7,
+            "w": 2,
+            "h": 0.3
+          },
+          {
+            "kind": "power",
+            "x": 3.3,
+            "y": 0.6,
+            "text": "Strøm på scenen: 16A 3-faset CEE (PA/monitor). Medbring forlænger og stikdåse til opladning."
+          },
+          {
+            "kind": "info",
+            "x": 3.0,
+            "y": 7.2,
+            "text": "Café Retro ligger på 1. sal. Regn med at bære alt op ad trappen."
+          },
+          {
+            "kind": "camera",
+            "x": 4.5,
+            "y": 7.2,
+            "text": "Kamera bagerst i rummet: totalbillede. Lille scene, så én vidvinkel kan tit fange hele bandet."
+          },
+          {
+            "kind": "camera",
+            "x": 1.6,
+            "y": 3.9,
+            "text": "Kamera ved scenekanten med vidvinkel."
+          }
+        ]
       }
     }
   ],
