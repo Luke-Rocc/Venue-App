@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Venue Video Guide</title>
   <meta name="description" content="Vælg et spillested i København og se hvilket videoudstyr du skal tage med.">
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
   <header>
@@ -20,15 +20,17 @@
   <section id="tab-venues" role="tabpanel">
     <div class="wrap">
       <p class="lead">Vælg et spillested i København og se hvilket videoudstyr du skal tage med for at filme der.</p>
-      <div class="pickers">
-        <label>Spillested
-          <select id="venue"></select>
-        </label>
-        <label>Rum
+      <div class="search">
+        <input id="venue-search" type="search" placeholder="Søg på navn eller bydel, fx Vega eller Nørrebro" autocomplete="off" aria-label="Søg efter spillested">
+      </div>
+      <ul id="venue-results" class="results"></ul>
+      <div id="venue-detail" hidden>
+        <button type="button" id="back" class="link">← Alle spillesteder</button>
+        <label class="field room-picker">Rum
           <select id="room"></select>
         </label>
+        <div id="content"></div>
       </div>
-      <div id="content"><p class="muted">Indlæser…</p></div>
       <p class="muted">Punkter mærket <span class="tag">udledt</span> er vores vurdering, ikke stedets egne ord. Tjek altid stedets tech spec.</p>
     </div>
   </section>
@@ -109,6 +111,6 @@
     </div>
   </section>
 
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
-const venueSelect = document.getElementById("venue");
+const searchInput = document.getElementById("venue-search");
+const results = document.getElementById("venue-results");
+const detail = document.getElementById("venue-detail");
 const roomSelect = document.getElementById("room");
 const content = document.getElementById("content");
 const profileForm = document.getElementById("profile-form");
@@ -10,6 +12,7 @@ const GEAR_KEY = "venue-video:kit";
 const SOCIAL = ["instagram", "youtube", "vimeo", "tiktok", "linkedin", "website"];
 let venue = null;
 let gearCatalog = [];
+let venues = [];
 
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -303,8 +306,59 @@ function renderRoom() {
   });
 }
 
-async function loadVenue(entry) {
+// Search
+
+function norm(s) {
+  return String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ø/g, "o").replace(/æ/g, "ae").replace(/å/g, "a");
+}
+
+function matches(v, q) {
+  const hay = norm([v.name, v.area, v.address, ...(v.tags || [])].join(" "));
+  return norm(q).split(/\s+/).filter(Boolean).every((word) => hay.includes(word));
+}
+
+function renderResults() {
+  const q = searchInput.value.trim();
+  const found = venues.filter((v) => matches(v, q))
+    .sort((a, b) => Boolean(b.file) - Boolean(a.file) || a.name.localeCompare(b.name, "da"));
+  if (!found.length) {
+    results.innerHTML = `<li class="muted empty">Ingen spillesteder matcher "${esc(q)}".</li>`;
+    return;
+  }
+  results.innerHTML = found.map((v) => `
+    <li><button type="button" class="result" data-venue="${esc(v.id)}">
+      <span class="result-main">
+        <b>${esc(v.name)}</b>
+        <span class="muted">${esc(v.area || "")}${v.capacity ? ` · ${esc(v.capacity)} stående` : ""}</span>
+      </span>
+      ${v.file ? `<span class="badge ok">Guide klar</span>` : `<span class="badge">Kommer snart</span>`}
+    </button></li>`).join("");
+}
+
+function showSearch() {
+  detail.hidden = true;
+  results.hidden = false;
+  searchInput.parentElement.hidden = false;
+  if (location.hash.startsWith("#venue/")) history.replaceState(null, "", "#venues");
+}
+
+async function openVenue(id) {
+  const entry = venues.find((v) => v.id === id);
+  if (!entry) return;
+  results.hidden = true;
+  searchInput.parentElement.hidden = true;
+  detail.hidden = false;
+  history.replaceState(null, "", `#venue/${id}`);
+  if (!entry.file) {
+    venue = null;
+    roomSelect.parentElement.hidden = true;
+    content.innerHTML = `<section class="card"><h2>${esc(entry.name)}</h2>
+      <div class="muted">${esc(entry.area || "")}</div>
+      <p>Vi har ikke kortlagt ${esc(entry.name)} endnu, så der er ingen pakkeliste her. Den kommer, når vi har gennemgået stedets tech spec.</p></section>`;
+    return;
+  }
   venue = await (await fetch(entry.file)).json();
+  roomSelect.parentElement.hidden = venue.rooms.length < 2;
   roomSelect.innerHTML = venue.rooms.map((r) => `<option value="${esc(r.id)}">${esc(r.name)}</option>`).join("");
   renderRoom();
 }
@@ -314,7 +368,9 @@ async function loadVenue(entry) {
 function showTab(name) {
   document.querySelectorAll("[role=tab]").forEach((t) => t.setAttribute("aria-selected", String(t.dataset.tab === name)));
   document.querySelectorAll("[role=tabpanel]").forEach((panel) => { panel.hidden = panel.id !== `tab-${name}`; });
-  if (location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
+  if (name !== "venues" || !location.hash.startsWith("#venue/")) {
+    if (location.hash !== `#${name}`) history.replaceState(null, "", `#${name}`);
+  }
 }
 
 document.querySelectorAll("[role=tab]").forEach((t) => t.addEventListener("click", () => showTab(t.dataset.tab)));
@@ -332,11 +388,16 @@ async function init() {
   try {
     gearCatalog = await (await fetch("data/gear.json")).json();
     initGear();
-    const venues = await (await fetch("data/venues.json")).json();
-    venueSelect.innerHTML = venues.map((v) => `<option value="${esc(v.id)}">${esc(v.name)}</option>`).join("");
-    venueSelect.addEventListener("change", () => loadVenue(venues.find((v) => v.id === venueSelect.value)));
+    venues = await (await fetch("data/venues.json")).json();
+    searchInput.addEventListener("input", renderResults);
+    results.addEventListener("click", (e) => {
+      const id = e.target.closest("[data-venue]")?.dataset.venue;
+      if (id) openVenue(id);
+    });
+    document.getElementById("back").addEventListener("click", showSearch);
     roomSelect.addEventListener("change", renderRoom);
-    await loadVenue(venues[0]);
+    renderResults();
+    if (location.hash.startsWith("#venue/")) await openVenue(location.hash.slice(7));
   } catch (err) {
     content.innerHTML = `<p>Kunne ikke indlæse data. (${esc(err.message)})</p>`;
   }

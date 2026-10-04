@@ -2,7 +2,116 @@
   {
     "id": "stengade",
     "name": "Spillestedet Stengade",
+    "area": "Nørrebro",
     "address": "Stengade 18, 2200 København N",
+    "capacity": 230,
+    "tags": [
+      "rock",
+      "punk",
+      "indie",
+      "elektronisk",
+      "hiphop"
+    ],
     "file": "data/stengade.json"
+  },
+  {
+    "id": "vega",
+    "name": "Vega",
+    "area": "Vesterbro",
+    "tags": [
+      "Store Vega",
+      "Lille Vega",
+      "Ideal Bar"
+    ]
+  },
+  {
+    "id": "pumpehuset",
+    "name": "Pumpehuset",
+    "area": "Indre By",
+    "tags": []
+  },
+  {
+    "id": "loppen",
+    "name": "Loppen",
+    "area": "Christiania",
+    "tags": []
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "area": "Nørrebro",
+    "tags": []
+  },
+  {
+    "id": "alice",
+    "name": "ALICE",
+    "area": "Nørrebro",
+    "tags": []
+  },
+  {
+    "id": "hotel-cecil",
+    "name": "Hotel Cecil",
+    "area": "Indre By",
+    "tags": []
+  },
+  {
+    "id": "amager-bio",
+    "name": "Amager Bio",
+    "area": "Amager",
+    "tags": [
+      "Beta"
+    ]
+  },
+  {
+    "id": "kb18",
+    "name": "KB18",
+    "area": "Vesterbro (Kødbyen)",
+    "tags": []
+  },
+  {
+    "id": "den-graa-hal",
+    "name": "Den Grå Hal",
+    "area": "Christiania",
+    "tags": []
+  },
+  {
+    "id": "global",
+    "name": "Global",
+    "area": "Nørrebro",
+    "tags": []
+  },
+  {
+    "id": "bremen-teater",
+    "name": "Bremen Teater",
+    "area": "Vesterbro",
+    "tags": []
+  },
+  {
+    "id": "montmartre",
+    "name": "Jazzhus Montmartre",
+    "area": "Indre By",
+    "tags": [
+      "jazz"
+    ]
+  },
+  {
+    "id": "ungdomshuset",
+    "name": "Ungdomshuset",
+    "area": "Nordvest",
+    "tags": []
+  },
+  {
+    "id": "dr-koncerthuset",
+    "name": "DR Koncerthuset",
+    "area": "Ørestad",
+    "tags": []
+  },
+  {
+    "id": "royal-arena",
+    "name": "Royal Arena",
+    "area": "Ørestad",
+    "tags": [
+      "arena"
+    ]
   }
 ]

@@ -145,3 +145,31 @@ button.remove:hover { color: var(--accent); }
 .social label { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; }
 .social-links { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
 .social-links a { padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; text-decoration: none; font-size: 0.9rem; }
+.search input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+}
+.results { list-style: none; margin: 12px 0 20px; padding: 0; display: grid; gap: 8px; }
+.results .empty { padding: 12px 4px; }
+button.result {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  text-align: left;
+  padding: 14px 16px;
+  font: inherit; color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+button.result:hover { border-color: var(--accent); }
+.result-main { display: flex; flex-direction: column; gap: 2px; }
+.badge { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; background: var(--border); color: var(--muted); white-space: nowrap; }
+.badge.ok { background: var(--accent); color: #fff; }
+button.link { appearance: none; border: 0; background: none; color: var(--accent); font: inherit; padding: 0; margin-bottom: 16px; cursor: pointer; }
+.room-picker { max-width: 360px; }
