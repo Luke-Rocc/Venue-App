@@ -7,10 +7,11 @@ Statisk side (HTML, CSS, JS) i `public/` plus en lille Cloudflare Worker (`src/w
 ## Kør lokalt
 
 ```sh
-python3 -m http.server 8000 -d public
+npm install
+npx wrangler dev
 ```
 
-Åbn http://localhost:8000.
+Åbn http://localhost:8787. (Kun den statiske side: `python3 -m http.server 8000 -d public`, men så virker AI-søgningen ikke.)
 
 ## Tilføj et spillested
 
