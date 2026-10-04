@@ -7,20 +7,20 @@ Ren statisk side (HTML, CSS, JS), ingen build-trin.
 ## Kør lokalt
 
 ```sh
-python3 -m http.server 8000
+python3 -m http.server 8000 -d public
 ```
 
 Åbn http://localhost:8000.
 
 ## Tilføj et spillested
 
-1. Læg en JSON-fil i `data/` (se `data/stengade.json` som skabelon; hvert rum har et `gear`-felt med pakkelisten).
-2. Tilføj stedet i `data/venues.json`.
+1. Læg en JSON-fil i `public/data/` (se `public/data/stengade.json` som skabelon; hvert rum har et `gear`-felt med pakkelisten).
+2. Tilføj stedet i `public/data/venues.json`.
 
-## Deploy på Cloudflare Pages
+## Deploy på Cloudflare
 
-Forbind repoet i Cloudflare Pages med:
+Siden deployes som en Cloudflare Worker med statiske filer (se `wrangler.jsonc`, som peger på `public/`).
+Forbind repoet under Workers & Pages med:
 
-- Framework preset: **None**
 - Build command: *(tom)*
-- Build output directory: `/`
+- Deploy command: `npx wrangler deploy`
