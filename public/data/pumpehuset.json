@@ -1,0 +1,174 @@
+{
+  "id": "pumpehuset",
+  "name": "Pumpehuset",
+  "city": "København",
+  "address": "Studiestræde 52, 1554 København V",
+  "website": "https://pumpehuset.dk",
+  "profile": "Spillested i et gammelt pumpehus midt i byen med Kran Sal ovenpå og Sort Sal i stueetagen.",
+  "sources": {
+    "tech_spec_pdf": "https://pumpehuset.dk/wp-content/uploads/Pumpehuset-Tech-Specs-2024.pdf",
+    "list": [
+      {
+        "title": "Pumpehuset Tech Specs 2024 (Kran Sal)",
+        "url": "https://pumpehuset.dk/wp-content/uploads/Pumpehuset-Tech-Specs-2024.pdf"
+      },
+      {
+        "title": "Pumpehuset Tech Specs Sort Sal 2026",
+        "url": "https://pumpehuset.dk/wp-content/uploads/Pumpehuset-Tech-Specs-SORT-SAL-2026.docx-1.pdf"
+      }
+    ]
+  },
+  "spec_version": "Tech Specs februar 2024 (Kran Sal) og november 2025 (Sort Sal) (hentet 2026-10-05)",
+  "rooms": [
+    {
+      "id": "kran-sal",
+      "name": "Kran Sal (hovedsal)",
+      "capacity": {
+        "standing": 600,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 8.1,
+        "depth_m": 5.5,
+        "height_m": 1.05,
+        "clearance_stage_to_ceiling_m": 2.7,
+        "note": "4 m til truss og 2,7 m til laveste lampe over scenen. Over publikum 5,1 m til truss.",
+        "barricade": null,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "Gæstestrøm max 63A/3F (CEE)",
+          "16A/1F delt til FOH"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Soundcraft Vi2000",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "ChamSys MagicQ MQ80",
+        "rig": "Clay Paky Alpha Spot QWO 800, Robe 350 LED Wash, CCT-profiler, Par64 på væggene",
+        "hazer": "Smoke Factory Tourhazer",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "leq15_dba": 103,
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Fast lysrig med LED-wash og spots, hazer, Soundcraft Vi2000 på FOH, op til 63A 3-faset gæstestrøm og gratis wifi i hele huset.",
+        "bring": [
+          {
+            "text": "Vidvinkel (fx 16-35 mm). Der er kun 2,7 m fra scenen til laveste lampe, så høje vinkler er svære."
+          },
+          {
+            "text": "Lysstærkt objektiv eller telezoom til close-ups fra salen.",
+            "inferred": "Scenen er 8,1 m bred, så en tele fra FOH rækker langt."
+          },
+          {
+            "text": "Gimbal eller monopod. Barriere bruges kun ved særlige effekter, så regn med publikum helt op til scenen.",
+            "inferred": "Specs nævner kun barriere i forbindelse med CO2- og gnisteffekter."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabel til et stereo-feed fra Vi2000. Aftal det med husets tekniker.",
+            "inferred": "Optagemulighed er ikke beskrevet i spec."
+          },
+          {
+            "text": "Kameramikrofon til ambience."
+          },
+          {
+            "text": "Ekstra batterier og kort, og lad ikke dyrt udstyr stå. Alt skal op med en elevator på 300 kg.",
+            "inferred": "Elevatoren er den eneste vej ind."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi, men kablet net er ikke nævnt.",
+            "needs": "livestream"
+          },
+          {
+            "text": "Lille LED-panel til interviews backstage.",
+            "inferred": "Backstage-lys er ikke beskrevet.",
+            "needs": "interview"
+          }
+        ],
+        "leave_home": "Store stativer og kraner på scenen, da der er lavt til lampen. Tunge cases, da alt skal i en elevator på max 300 kg.",
+        "good_to_know": "Robe LED-wash kan flimre på kamera, så test lukkertiden (1/50 eller 1/100 s). Lydgrænse 103 dB(A) Leq15. Load-in sker med elevator (300 kg) og 3 m skub til salen. Kontakt Head of Production Mikkel Aksglæde (+45 21 60 38 98) om kamerapositioner.",
+        "house_provides": [
+          "led_light",
+          "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "sort-sal",
+      "name": "Sort Sal (stueetage)",
+      "capacity": {
+        "standing": 400,
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "stage": {
+        "width_m": 5,
+        "depth_m": 5,
+        "height_m": 0.68,
+        "clearance_stage_to_ceiling_m": 2.6,
+        "note": "2,6-3,6 m til loftet",
+        "barricade": null,
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "power": {
+        "circuits": [
+          "16A/1F til backline og FOH",
+          "2x 32A/3F og 2x 16A/3F til gæster (samlet max 32A/3F)"
+        ],
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "sound": {
+        "foh_console": "Soundcraft Vi1",
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "lights": {
+        "desk": "ChamSys MagicQ",
+        "rig": "33x ADJ Saber (rumlys), 8x Varytec Hero Wash, 3x Martin Mac 250",
+        "hazer": "Smoke Factory Tour Haze",
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "spl_limits": {
+        "leq15_dba": 103,
+        "source": "tech_spec_pdf (Sort Sal 2026)"
+      },
+      "gear": {
+        "house_has": "Lille fast lysrig med LED-wash, movinghead og hazer, Soundcraft Vi1 på FOH, 4 Cat6a-linjer og wifi.",
+        "bring": [
+          {
+            "text": "Vidvinkel. Scenen er 5 x 5 m, og der er 2,6-3,6 m til loftet."
+          },
+          {
+            "text": "Lysstærkt objektiv (f/1.8 eller bedre). Riggen er lille, så det kan blive mørkt.",
+            "inferred": "Vurderet ud fra lysriggen."
+          },
+          {
+            "text": "Gimbal eller monopod i stedet for store stativer."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabel til feed fra Vi1. Aftal det med teknikeren.",
+            "inferred": "Optagemulighed er ikke beskrevet."
+          },
+          {
+            "text": "Encoder og netkabel. Salen har 4 Cat6a-linjer til gæster, så spørg, om I må bruge en til streaming.",
+            "inferred": "Cat6a-linjerne er nævnt som data, ikke som internet.",
+            "needs": "livestream"
+          },
+          {
+            "text": "Ekstra batterier og kort."
+          }
+        ],
+        "leave_home": "Kraner og store lysstativer. Der er ikke plads.",
+        "good_to_know": "Lydgrænse 103 dB(A) Leq15. Ingen CO2, konfetti eller pyro. Load-in fra siden direkte til elevatoren (300 kg, 1,1 x 2,1 x 1,5 m).",
+        "house_provides": [
+          "led_light"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "id": "vega",
+  "name": "Vega",
+  "city": "København",
+  "address": "Enghavevej 40, 1674 København V",
+  "website": "https://www.vega.dk",
+  "profile": "Et af Københavns største spillesteder, i Folkets Hus på Vesterbro. Store Vega, Lille Vega og Ideal Bar.",
+  "sources": {
+    "tech_spec_pdf": "https://payload.vega.dk/media/store-vega-specs-version-24-02.pdf",
+    "list": [
+      {
+        "title": "Store VEGA specs 24.02",
+        "url": "https://payload.vega.dk/media/store-vega-specs-version-24-02.pdf"
+      }
+    ]
+  },
+  "spec_version": "Store VEGA specs version 24.02 (hentet 2026-10-05). Nyere versioner findes, men kunne ikke hentes.",
+  "rooms": [
+    {
+      "id": "store-vega",
+      "name": "Store Vega",
+      "capacity": {
+        "standing": 1550,
+        "seated": 800,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 10.8,
+        "depth_m": 9.2,
+        "height_m": 1,
+        "clearance_stage_to_ceiling_m": 6.8,
+        "note": "6,8 m til proscenium, 7,5 m under hejst truss",
+        "barricade": true,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "Lys: 1x 125A, 2x 63A, 2x 32A, 2x 16A (3-faset CEE)",
+          "Lyd: 1x 63A, 1x 32A, 2x 16A (3-faset CEE)"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Soundcraft Vi3000",
+        "foh_position": "Ca. 2/3 inde i salen, ikke under balkonen",
+        "audio_feed": "Lyd-drop fra pulten mulig med 3 dages varsel",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "ChamSys MQ500",
+        "rig": "25x ClayPaky Axcor Wash 300 (LED), 13x Arolla SpotMP, 6x Arolla ProfileMP, 4x Martin Atomic LED strobe, 14x Portman S-Tribe blinder",
+        "hazer": "Pea Soup Phantom",
+        "restrictions": "Ingen pyro, konfetti, CO2 eller åben ild",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "leq15_dba": 103,
+        "source": "tech_spec_pdf"
+      },
+      "camera_rules": "Kameraer tilladt bagerst i salen, på balkonen, i siderne, ved FOH og begrænsede scenepositioner. Ingen kameraer foran nødudgange. Kommerciel brug kræver underskrevet aftale med Vega.",
+      "gear": {
+        "house_has": "Stor fast lysrig med LED-wash, spots, strobes og blindere, hazer, Soundcraft Vi3000 på FOH med mulighed for lyd-drop, Mojo-barriere foran scenen, masser af 3-faset strøm og gratis wifi.",
+        "bring": [
+          {
+            "text": "Telezoom (fx 70-200 mm) til close-ups fra FOH eller balkonen. FOH står cirka 2/3 inde i salen.",
+            "inferred": "Afstanden fra FOH til scenen er ikke angivet i meter, men salen er stor."
+          },
+          {
+            "text": "Vidvinkel til totaler fra balkonen eller siderne. Scenen er 10,8 x 9,2 m."
+          },
+          {
+            "text": "Stativ til faste positioner på balkonen og ved FOH. Spørg om plads ved pulten på forhånd."
+          },
+          {
+            "text": "Gimbal eller monopod til scenepositioner. Der er barriere foran scenen, så I kan arbejde i fotograven, hvis Vega giver lov.",
+            "inferred": "Fotograv er ikke nævnt i spec, kun barrieren."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabler til lyd-drop fra Vi3000. Bestil det mindst 3 dage før."
+          },
+          {
+            "text": "Kameramikrofon til publikumslyd og ambience."
+          },
+          {
+            "text": "Ekstra batterier og kort. En koncert i Store Vega kan let vare 2-3 timer inklusive opvarmning."
+          },
+          {
+            "text": "Encoder og plan B til internet (fx 5G-router). Der er gratis wifi, men kablet net er ikke nævnt.",
+            "inferred": "Kablet net står ikke i spec.",
+            "needs": "livestream"
+          },
+          {
+            "text": "Lille LED-panel til interviews backstage.",
+            "inferred": "Backstage-lys er ikke beskrevet.",
+            "needs": "interview"
+          },
+          {
+            "text": "Gaffatape og kabelbeskyttere, især hvis I trækker kabler fra FOH."
+          }
+        ],
+        "leave_home": "Store lyspakker. Riggen er stor og fast, og trussen kan ikke fjernes. Ingen pyro eller røgeffekter ud over husets hazer.",
+        "good_to_know": "LED-riggen kan flimre på kamera, så brug 1/50 eller 1/100 s lukker og test før showet. Lydgrænse 103 dB(A) Leq15 målt ved FOH. Load-in via Rejsbygade med elevator direkte til scenen (parkering 600 kr pr. bil). Kommerciel optagelse kræver kontrakt med Vega, så aftal kamerapositioner og lyd-drop i god tid.",
+        "house_provides": [
+          "led_light",
+          "light_stand"
+        ]
+      }
+    }
+  ]
+}

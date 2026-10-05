@@ -22,13 +22,19 @@
       "Store Vega",
       "Lille Vega",
       "Ideal Bar"
-    ]
+    ],
+    "file": "data/vega.json",
+    "address": "Enghavevej 40, 1674 København V",
+    "capacity": 1550
   },
   {
     "id": "pumpehuset",
     "name": "Pumpehuset",
     "area": "Indre By",
-    "tags": []
+    "tags": [],
+    "file": "data/pumpehuset.json",
+    "address": "Studiestræde 52, 1554 København V",
+    "capacity": 600
   },
   {
     "id": "loppen",
@@ -60,7 +66,10 @@
     "area": "Amager",
     "tags": [
       "Beta"
-    ]
+    ],
+    "file": "data/amager-bio.json",
+    "address": "Øresundsvej 6, 2300 København S",
+    "capacity": 1300
   },
   {
     "id": "kb18",

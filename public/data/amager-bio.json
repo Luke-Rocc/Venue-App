@@ -1,0 +1,187 @@
+{
+  "id": "amager-bio",
+  "name": "Amager Bio",
+  "city": "København",
+  "address": "Øresundsvej 6, 2300 København S",
+  "website": "https://www.amagerbio.dk",
+  "profile": "Gammel biograf på Amager, nu stort spillested med balkon. Den lille sal BETA ligger i samme hus.",
+  "sources": {
+    "tech_spec_pdf": "https://ab-b.dk/wp-content/uploads/2025/10/Amager-Bio-venue-specifications-2025.pdf",
+    "list": [
+      {
+        "title": "Amager Bio venue specifications 2025",
+        "url": "https://ab-b.dk/wp-content/uploads/2025/10/Amager-Bio-venue-specifications-2025.pdf"
+      },
+      {
+        "title": "BETA spec 2025",
+        "url": "https://ab-b.dk/wp-content/uploads/2025/12/BETA-spec-2025-2.pdf"
+      }
+    ]
+  },
+  "spec_version": "Amager Bio venue specifications 10.02.25 og BETA spec 2025 (hentet 2026-10-05)",
+  "rooms": [
+    {
+      "id": "amager-bio",
+      "name": "Amager Bio (store sal)",
+      "capacity": {
+        "standing": 1300,
+        "seated": 705,
+        "note": "1.000 på gulvet og 300 på balkonen stående. 577 + 128 siddende.",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 12,
+        "depth_m": 6,
+        "height_m": 1.1,
+        "clearance_stage_to_ceiling_m": 5.5,
+        "note": "Spilleflade 12 x 6 m, 16 m bred med sidescener",
+        "barricade": null,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "Lyd: 1x 63A 3-faset",
+          "Lys: 2x 63A (eller 1x 125A) 3-faset gæstestrøm"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Midas HD96-24",
+        "foh_position": "13 m fra scenekant, ude af centrum",
+        "pa": "L-Acoustics KUDO + SB28",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "Avolites Tiger Touch 2",
+        "rig": "Chauvet R3/R2, SGM X-5 strobes, Prolights ECL Profile/Fresnel, Strike Array blindere",
+        "hazer": "Swefog K1",
+        "rigging": "Ingen rigning, kun gulvproduktion",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "screen": "Motoriseret lærred 520 x 425 cm (leje)",
+        "projector": "Panasonic PT-MZ880 laser, 8000 lumen (leje)",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "leq15_dba": 101,
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Stor fast lysrig med LED-lamper, strobes og blindere, hazer, Midas HD96 på FOH, L-Acoustics PA, lærred og projektor til leje, 3-faset strøm op til 125A og både wifi og kablet internet.",
+        "bring": [
+          {
+            "text": "Telezoom (fx 70-200 mm). FOH står 13 m fra scenen, og balkonen giver en god total."
+          },
+          {
+            "text": "Vidvinkel til totaler. Spillefladen er 12 x 6 m med 5,5 m til loftet."
+          },
+          {
+            "text": "Stativer til faste positioner på balkonen og ved FOH. Aftal pladserne med produktionen."
+          },
+          {
+            "text": "Gimbal eller monopod tæt på scenen.",
+            "inferred": "Barriere er ikke nævnt i spec. Regn med publikum tæt på."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabler til feed fra Midas HD96. Aftal det med teknisk chef.",
+            "inferred": "Optagemulighed er ikke beskrevet i spec."
+          },
+          {
+            "text": "Kameramikrofon til publikumslyd."
+          },
+          {
+            "text": "Netkabel og encoder. Der er kablet internet, så spørg om et stik ved jeres streamposition.",
+            "needs": "livestream"
+          },
+          {
+            "text": "LED-panel til interviews backstage.",
+            "inferred": "Backstage-lys er ikke beskrevet.",
+            "needs": "interview"
+          },
+          {
+            "text": "Gaffatape og kabelbeskyttere til lange kabelløb fra FOH og balkon."
+          }
+        ],
+        "leave_home": "Egen projektor og lærred. Huset kan leje dem ud. Lys der skal hænges op, for der er ingen rigning, kun lys på gulvet.",
+        "good_to_know": "LED-lamper og strobes kan flimre på kamera, så test lukkertiden. Lydgrænse 101 dB(A) Leq15 målt ved FOH. Scene-curfew kl. 23 og max 10 timer fra load-in. Load-in fra Strickersvej 7. Ingen pyro, konfetti eller åben ild. Kontakt: produktionschef Signe Andersen (signe@amagerbio.dk).",
+        "house_provides": [
+          "led_light",
+          "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "beta",
+      "name": "BETA (lille sal)",
+      "capacity": {
+        "standing": 200,
+        "seated": 80,
+        "source": "BETA spec 2025"
+      },
+      "stage": {
+        "width_m": 6.3,
+        "depth_m": 3,
+        "height_m": 0.45,
+        "clearance_stage_to_ceiling_m": 2.3,
+        "note": "1,9 m til baglampe/truss",
+        "barricade": null,
+        "source": "BETA spec 2025"
+      },
+      "power": {
+        "circuits": [
+          "16A/32A gæstestrøm",
+          "FOH 16A 3-faset",
+          "Backline 10A 1-faset"
+        ],
+        "source": "BETA spec 2025"
+      },
+      "sound": {
+        "foh_console": "Midas Pro2C",
+        "source": "BETA spec 2025"
+      },
+      "lights": {
+        "desk": "Avolites Titan Mobile",
+        "rig": "Moving wash, LED-bars og teaterspots",
+        "hazer": "2x Chauvet Hurricane (begrænset brug)",
+        "source": "BETA spec 2025"
+      },
+      "spl_limits": {
+        "leq15_dba": 101,
+        "source": "BETA spec 2025"
+      },
+      "gear": {
+        "house_has": "Lille lysrig med moving wash og LED-bars, Midas Pro2C på FOH, wifi og kablet internet.",
+        "bring": [
+          {
+            "text": "Vidvinkel. Der er kun 2,3 m til loftet og 1,9 m til baglamperne, så I står tæt og lavt."
+          },
+          {
+            "text": "Lysstærkt objektiv (f/1.8 eller bedre).",
+            "inferred": "Lille rig i et kælderrum, så det bliver mørkt."
+          },
+          {
+            "text": "Gimbal eller håndholdt. Stativer er svære i et rum til 200."
+          },
+          {
+            "text": "Lille LED-panel, hvis I må supplere lyset. Spørg huset først.",
+            "inferred": "Det står ikke i spec, om man må tilføje lys."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabel til feed fra Pro2C.",
+            "inferred": "Optagemulighed er ikke beskrevet."
+          },
+          {
+            "text": "Netkabel og encoder. Kablet internet findes.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Stativer og kraner. Der er ikke plads eller højde.",
+        "good_to_know": "Hazeren bruges begrænset, men test LED-bars for flimmer. Lydgrænse 101 dB(A) Leq15. Load-in gennem hovedindgangen på Øresundsvej 6.",
+        "house_provides": [
+          "led_light"
+        ]
+      }
+    }
+  ]
+}
