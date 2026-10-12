@@ -1,0 +1,199 @@
+{
+  "id": "skuespilhuset",
+  "name": "Skuespilhuset (Det Kgl. Teater)",
+  "city": "København",
+  "address": "Sankt Annæ Plads 36, 1250 København K",
+  "website": "https://kglteater.dk",
+  "profile": "Det Kongelige Teaters skuespilhus ved havnen med tre scener: Store Scene, Mellemgulvet og Lille Scene.",
+  "sources": {
+    "tech_spec_pdf": "https://www.kglteater.dk/media/ccxaoyas/tech-sheet-en-playhouse-2024.pdf",
+    "list": [
+      {
+        "title": "Tech sheet Playhouse 2024 (V1.1)",
+        "url": "https://www.kglteater.dk/media/ccxaoyas/tech-sheet-en-playhouse-2024.pdf"
+      }
+    ]
+  },
+  "spec_version": "Technical Specifications The Playhouse V1.1 (hentet 2026-10-12)",
+  "rooms": [
+    {
+      "id": "store-scene",
+      "name": "Store Scene",
+      "capacity": {
+        "standing": null,
+        "seated": 618,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 27,
+        "depth_m": 21,
+        "clearance_stage_to_ceiling_m": 23,
+        "note": "Proscenium 7,9 m højt og 12,5-16 m bredt. 23 m til gridden.",
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "AUX 400V 63A i begge sider af scenen"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Studer Vista 5",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "MA3",
+        "rig": "Stort teateranlæg med over 800 dimmerkredse",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "leq15_dba": null
+      },
+      "gear": {
+        "house_has": "Fuldt teateranlæg med MA3 lyspult, Studer Vista 5 lydpult, 63A strøm i begge sider, overvågningskamera på scenen og gratis wifi.",
+        "bring": [
+          {
+            "text": "Telezoom (fx 70-200 mm eller længere) fra salen. Scenen er 27 x 21 m."
+          },
+          {
+            "text": "Vidvinkel til totaler af hele scenebilledet. Prosceniet er op til 16 m bredt."
+          },
+          {
+            "text": "Stativer til faste positioner i salen. Aftal pladserne med jeres kontaktperson, så I ikke tager publikumspladser.",
+            "inferred": "Kamerapositioner er ikke beskrevet i spec."
+          },
+          {
+            "text": "Ekstern optager og kabler til feed fra Studer Vista 5. Aftal det med lydafdelingen.",
+            "inferred": "Optagemulighed er ikke beskrevet i spec."
+          },
+          {
+            "text": "Ekstra batterier og kort. En forestilling kan vare flere timer."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi (KGLSPOT), men kablet net er ikke nævnt.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Egne lyspakker. Huset har et stort teateranlæg, og lys styres af husets folk.",
+        "good_to_know": "Teaterlys er ofte svagere og mere varmt end koncertlys, så hold øje med eksponering og hvidbalance. Ingen optageregler i spec, så spørg jeres kontaktperson. Load-in bagfra (port 4,5 x 5 m, én lang trailer ad gangen). Arbejde efter kl. 23 er overtid.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "mellemgulvet",
+      "name": "Mellemgulvet",
+      "capacity": {
+        "standing": null,
+        "seated": 202,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 15,
+        "depth_m": 10.5,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "16A, 32A og 63A i begge sider af scenen"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Studer Vista 5 (fast)",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "MA3 Light",
+        "rig": "15x Martin Encore Performance, 31x Martin Encore Wash, 15,5 m X30-truss på hejs",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "screens": "To videoskærme bag scenen og overvågningskamera",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Martin Encore-lamper på hejsetruss, MA3 lyspult, Studer Vista 5, 16-63A strøm i begge sider og gratis wifi.",
+        "bring": [
+          {
+            "text": "Telezoom til close-ups og vidvinkel til totaler. Scenen er 15 x 10,5 m."
+          },
+          {
+            "text": "Stativer til faste positioner. Aftal pladserne med jeres kontaktperson.",
+            "inferred": "Kamerapositioner er ikke beskrevet."
+          },
+          {
+            "text": "Ekstern optager og kabler til feed fra Studer-pulten.",
+            "inferred": "Optagemulighed er ikke beskrevet."
+          },
+          {
+            "text": "Test lukkertiden mod Encore-lamperne før forestillingen.",
+            "inferred": "Om de flimrer på kamera, står ikke i spec."
+          }
+        ],
+        "leave_home": "Egne lyspakker.",
+        "good_to_know": "Der er to videoskærme bag scenen, som kan komme med i billedet. Load-in og wifi er det samme som for hele huset.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "lille-scene",
+      "name": "Lille Scene",
+      "capacity": {
+        "standing": null,
+        "seated": 113,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 13,
+        "depth_m": 7,
+        "note": "To X30-truss 12 m over publikum",
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "16A, 32A og 63A i begge sider af scenen"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Midas M32R (32/32 Dante)",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "GrandMA2 onPC med Command Wing",
+        "rig": "LED: Prolights Eclipse, Martin Mac Aura, Chauvet COLORado. Desuden halogen-profiler, Source Four, PAR64 og fresneller",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Blandet rig med LED og halogen, Midas M32R med Dante, 16-63A strøm og gratis wifi.",
+        "bring": [
+          {
+            "text": "Vidvinkel og lysstærkt objektiv. Rummet har 113 pladser og en scene på 13 x 7 m."
+          },
+          {
+            "text": "Stativ eller gimbal. Aftal positioner med jeres kontaktperson.",
+            "inferred": "Kamerapositioner er ikke beskrevet."
+          },
+          {
+            "text": "Dante-interface eller optager til multitrack fra M32R. Aftal det med lydteknikeren.",
+            "inferred": "M32R har 32/32 Dante, men optagelse er ikke beskrevet."
+          },
+          {
+            "text": "Test hvidbalancen. Riggen blander LED og halogen.",
+            "inferred": "Vurderet ud fra lampelisten."
+          }
+        ],
+        "leave_home": "Egne lyspakker.",
+        "good_to_know": "Ventilationen kan give en svag brummen. Den kan slukkes i perioder efter aftale med teknisk chef, så husk det, hvis I optager lyd. Load-in via port på 3,6 x 4,8 m.",
+        "house_provides": [
+          "light_stand",
+          "led_light"
+        ]
+      }
+    }
+  ]
+}

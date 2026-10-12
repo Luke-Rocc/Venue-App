@@ -11,10 +11,14 @@
       {
         "title": "Store VEGA specs 24.02",
         "url": "https://payload.vega.dk/media/store-vega-specs-version-24-02.pdf"
+      },
+      {
+        "title": "Ideal Bar specs 24.02",
+        "url": "https://payload.vega.dk/media/ideal-bar-specs-version-24-02.pdf"
       }
     ]
   },
-  "spec_version": "Store VEGA specs version 24.02 (hentet 2026-10-05). Nyere versioner findes, men kunne ikke hentes.",
+  "spec_version": "Store VEGA og Ideal Bar specs version 24.02 (hentet 2026-10-12). Nyere versioner findes, men kunne ikke hentes.",
   "rooms": [
     {
       "id": "store-vega",
@@ -103,6 +107,86 @@
         "house_provides": [
           "led_light",
           "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "ideal-bar",
+      "name": "Ideal Bar",
+      "capacity": {
+        "standing": 200,
+        "source": "Ideal Bar specs 24.02"
+      },
+      "stage": {
+        "width_m": 5,
+        "depth_m": 3.5,
+        "height_m": 0.25,
+        "clearance_stage_to_ceiling_m": 4.0,
+        "note": "2,7 m bred foran og 5 m bagved",
+        "barricade": null,
+        "source": "Ideal Bar specs 24.02"
+      },
+      "power": {
+        "circuits": [
+          "Lyd: 16A 1-faset (Schuko/LK)",
+          "Lys: 16A 3-faset CEE"
+        ],
+        "source": "Ideal Bar specs 24.02"
+      },
+      "sound": {
+        "foh_console": "Allen & Heath C3500 med CDM32",
+        "audio_feed": "Lyd-drop fra pulten skal aftales mindst 3 dage før",
+        "source": "Ideal Bar specs 24.02"
+      },
+      "lights": {
+        "desk": "ChamSys MQ60",
+        "rig": "Fast rig: 3x Martin Rush Par2, 6x FosTech IQparZoom, 2x ADJ Saber RGBW, spejlkugle",
+        "operator": "Ingen lystekniker. Medbring selv",
+        "hazer": "Tour Haze2 (gratis)",
+        "source": "Ideal Bar specs 24.02"
+      },
+      "video": {
+        "projector": "Panasonic PT-TW380, 3300 lumen",
+        "screen": "127 x 231 cm, HDMI fra scenen",
+        "source": "Ideal Bar specs 24.02"
+      },
+      "spl_limits": {
+        "leq15_dba": 97,
+        "source": "Ideal Bar specs 24.02"
+      },
+      "camera_rules": "Kameraer ved FOH bagerst, fra siderne og balkon. Ingen kameraer foran nødudgange, ingen filmning af personale eller bar, ingen podier til faste kameraer blandt publikum. Kameralys skal godkendes af Vega på forhånd.",
+      "gear": {
+        "house_has": "Lille fast LED-rig med spejlkugle og hazer, Allen & Heath C3500 på FOH, projektor og lærred, gratis wifi. Huset har kun en lydtekniker og en venue manager.",
+        "bring": [
+          {
+            "text": "Lysstærkt objektiv (f/1.8 eller bedre). Riggen er lille, og der er ingen lystekniker, medmindre I selv har en med.",
+            "inferred": "Vurderet ud fra den lille rig."
+          },
+          {
+            "text": "Vidvinkel. Scenen er kun 2,7 m bred foran og 3,5 m dyb."
+          },
+          {
+            "text": "Gimbal eller håndholdt. Podier til faste kameraer blandt publikum er ikke tilladt."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabel til lyd-drop fra pulten. Bestil det mindst 3 dage før."
+          },
+          {
+            "text": "Kameramikrofon til ambience."
+          },
+          {
+            "text": "Spørg Vega før I bruger kameralys. Det skal godkendes på forhånd."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi, men kablet net er ikke nævnt.",
+            "inferred": "Kablet net står ikke i spec.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Stativer på podier og store lyspakker. Det er ikke tilladt blandt publikum, og der er ikke plads.",
+        "good_to_know": "Lydgrænse 97 dB(A) Leq15, så det er typisk mindre koncerter. Load-in fra Rejsbygade 1 direkte ind på gulvet. Der er ingen stagehands. Kommerciel optagelse kræver kontrakt med Vega.",
+        "house_provides": [
+          "led_light"
         ]
       }
     }

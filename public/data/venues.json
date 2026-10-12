@@ -19,9 +19,9 @@
     "name": "Vega",
     "area": "Vesterbro",
     "tags": [
-      "Store Vega",
+      "Ideal Bar",
       "Lille Vega",
-      "Ideal Bar"
+      "Store Vega"
     ],
     "file": "data/vega.json",
     "address": "Enghavevej 40, 1674 København V",
@@ -122,5 +122,18 @@
     "tags": [
       "arena"
     ]
+  },
+  {
+    "id": "skuespilhuset",
+    "name": "Skuespilhuset (Det Kgl. Teater)",
+    "area": "Indre By",
+    "address": "Sankt Annæ Plads 36, 1250 København K",
+    "tags": [
+      "teater",
+      "Store Scene",
+      "Mellemgulvet",
+      "Lille Scene"
+    ],
+    "file": "data/skuespilhuset.json"
   }
 ]
