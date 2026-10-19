@@ -1,0 +1,146 @@
+{
+  "id": "operaen",
+  "name": "Operaen (Det Kgl. Teater)",
+  "city": "København",
+  "address": "Ekvipagemestervej 10, 1438 København K",
+  "website": "https://kglteater.dk",
+  "profile": "Det Kongelige Teaters operahus på Holmen med Store Scene og blackboxen Takkelloftet.",
+  "sources": {
+    "tech_spec_pdf": "https://www.kglteater.dk/media/2rjf1xbx/tech-sheet-en-opera-2024.pdf",
+    "list": [
+      {
+        "title": "Tech sheet Opera 2024 (V1.1)",
+        "url": "https://www.kglteater.dk/media/2rjf1xbx/tech-sheet-en-opera-2024.pdf"
+      }
+    ]
+  },
+  "spec_version": "General Information & Technical Specifications, Operaen V1.1 (hentet 2026-10-19)",
+  "rooms": [
+    {
+      "id": "store-scene",
+      "name": "Store Scene",
+      "capacity": {
+        "standing": null,
+        "seated": 1654,
+        "note": "1.710 i alt inkl. 56 ståpladser",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 29.1,
+        "depth_m": 23,
+        "clearance_stage_to_ceiling_m": 29.5,
+        "note": "Proscenium 8-12 m højt og 12,5-15,85 m bredt",
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "Hver side, forscene: 2x 16A, 2x 32A, 1x 63A CEE",
+          "Hver side, bagscene: desuden 2x 125A CEE og 1x PowerLock 400A"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Stagetec Avatus (Nexus)",
+        "recording": "Op til 192 MADI-kanaler",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "grandMA2",
+        "rig": "Fast standardrig, kan ikke flyttes. 4x RJ Cyrano 2,5 kW HMI følgespot",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "media_servers": "Watchout v6, MadMapper v5, adgang til 2 disguise-servere",
+        "cameras": "Husets Panasonic BS1H og BGH5 med kamerarobot",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Fast teaterrig med følgespots, Stagetec-lydanlæg med op til 192 MADI-kanaler til optagelse, medieservere, husets egne Panasonic-kameraer med robot, masser af strøm op til 400A og gratis wifi.",
+        "bring": [
+          {
+            "text": "Lang telezoom (fx 100-400 mm). Scenen er 29 m bred og salen stor."
+          },
+          {
+            "text": "Vidvinkel til totaler. Prosceniet er op til 15,85 m bredt."
+          },
+          {
+            "text": "Stativer til faste positioner. Aftal pladserne med jeres kontaktperson.",
+            "inferred": "Kamerapositioner er ikke beskrevet i spec."
+          },
+          {
+            "text": "Spørg om multitrack via MADI og om billeder fra husets egne kameraer. Det kan spare jer et kamera.",
+            "inferred": "Spec nævner udstyret, ikke om gæster må bruge det."
+          },
+          {
+            "text": "Ekstra batterier og kort. En opera kan vare 3-4 timer.",
+            "inferred": "Typisk forestillingslængde, ikke fra spec."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi (KGLSPOT), men kablet net er ikke nævnt.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Egne lyspakker og røgmaskiner, med mindre produktionen kræver det. Den faste rig må ikke ændres.",
+        "good_to_know": "Teaterlys med HMI-følgespots giver andre farvetemperaturer end LED, så tjek hvidbalancen. Ingen regler for filmning i spec, så spørg jeres kontaktperson. Load-in ved nordøsthjørnet, 2 lastbiler ad gangen. Arbejde efter kl. 23 er overtid.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    },
+    {
+      "id": "takkelloftet",
+      "name": "Takkelloftet (blackbox)",
+      "capacity": {
+        "standing": null,
+        "seated": 180,
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 10,
+        "depth_m": 12,
+        "clearance_stage_to_ceiling_m": 6.9,
+        "note": "Rummet er 18 x 16 m. 6,9 m fra gulv til grid.",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Midas M32R (32/32 Dante)",
+        "pa": "6x L-Acoustics 108M",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "desk": "MA1",
+        "rig": "Fresneller, Robert Juliat-profiler, Source Four og Par64. Ingen LED nævnt",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "screens": "Front- og bagprojektionsflader på 7 x 10 m",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Halogen-teaterrig, Midas M32R med Dante, L-Acoustics højttalere og store projektionsflader.",
+        "bring": [
+          {
+            "text": "Vidvinkel og lysstærkt objektiv. Rummet er en blackbox på 18 x 16 m med 180 pladser."
+          },
+          {
+            "text": "Stativ eller gimbal. Aftal positioner med jeres kontaktperson.",
+            "inferred": "Kamerapositioner er ikke beskrevet."
+          },
+          {
+            "text": "Dante-interface eller optager til multitrack fra M32R.",
+            "inferred": "Optagelse er ikke beskrevet i spec."
+          },
+          {
+            "text": "Indstil hvidbalancen til halogen (ca. 3200 K).",
+            "inferred": "Riggen er halogen ifølge lampelisten."
+          }
+        ],
+        "leave_home": "Egne lyspakker.",
+        "good_to_know": "Halogenlys flimrer sjældent, men giver varmt lys. Strømforhold står i et bilag, man skal bede om. Samme load-in som resten af Operaen.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    }
+  ]
+}

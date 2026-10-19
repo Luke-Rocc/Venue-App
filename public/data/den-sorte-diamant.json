@@ -1,0 +1,73 @@
+{
+  "id": "den-sorte-diamant",
+  "name": "Den Sorte Diamant (Dronningesalen)",
+  "city": "København",
+  "address": "Søren Kierkegaards Plads 1, 1221 København K",
+  "website": "https://pro.kb.dk/en/meetings/queens-hall",
+  "profile": "Det Kgl. Biblioteks koncertsal ved havnen med justerbar akustik. Bruges til koncerter, konferencer og optagelser.",
+  "sources": {
+    "tech_spec_pdf": null,
+    "list": [
+      {
+        "title": "The Queen's Hall (KB)",
+        "url": "https://pro.kb.dk/en/meetings/queens-hall"
+      }
+    ]
+  },
+  "spec_version": "Dronningesalens udlejningsside (hentet 2026-10-19). Ingen tech spec-PDF.",
+  "rooms": [
+    {
+      "id": "dronningesalen",
+      "name": "Dronningesalen",
+      "capacity": {
+        "standing": null,
+        "seated": 408,
+        "note": "408 faste pladser, op til 600",
+        "source": "udlejningsside"
+      },
+      "stage": {
+        "width_m": null,
+        "depth_m": null,
+        "note": "Salen er 17 x 27 m. Ekstra scene op til 11 x 7 x 0,6 m kan lejes.",
+        "source": "udlejningsside"
+      },
+      "sound": {
+        "note": "Akustikpaneler kan justeres. PA, mikrofoner og USB-lydoptagelse kan tilkøbes.",
+        "source": "udlejningsside"
+      },
+      "lights": {
+        "rig": "Standard scenelys hænger fast og er med i lejen",
+        "source": "udlejningsside"
+      },
+      "gear": {
+        "house_has": "Fast scenelys, justerbar akustik, en tekniker med i lejen og gratis wifi. PA, projektor, lydoptagelse til USB (1.000 kr) og videodokumentation (3.500 kr) kan tilkøbes.",
+        "bring": [
+          {
+            "text": "Telezoom og vidvinkel. Salen er 17 x 27 m."
+          },
+          {
+            "text": "Stativer til faste positioner. Rummet har faste stolerækker.",
+            "inferred": "Kamerapositioner er ikke beskrevet."
+          },
+          {
+            "text": "Ekstern optager og XLR-kabler. Husets PA skal tilkøbes, så aftal lyd-feed på forhånd.",
+            "inferred": "Feed-muligheder er ikke beskrevet."
+          },
+          {
+            "text": "God lydoptager og stereomikrofon til akustiske koncerter. Salen er bygget til akustisk musik.",
+            "inferred": "Vurderet ud fra den justerbare akustik."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi, men kablet net er ikke nævnt.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Projektor. Den kan tilkøbes i huset.",
+        "good_to_know": "Ekstra tekniker koster 500-630 kr i timen. Booking: booking@kb.dk, +45 9132 4880 (hverdage 10-15). Der er ingen tech spec-PDF, så bed om scenetegning og lysliste før optagelsen.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    }
+  ]
+}

@@ -135,5 +135,29 @@
       "Lille Scene"
     ],
     "file": "data/skuespilhuset.json"
+  },
+  {
+    "id": "operaen",
+    "name": "Operaen (Det Kgl. Teater)",
+    "area": "Holmen",
+    "address": "Ekvipagemestervej 10, 1438 København K",
+    "tags": [
+      "opera",
+      "teater",
+      "Takkelloftet"
+    ],
+    "file": "data/operaen.json"
+  },
+  {
+    "id": "den-sorte-diamant",
+    "name": "Den Sorte Diamant (Dronningesalen)",
+    "area": "Indre By",
+    "address": "Søren Kierkegaards Plads 1, 1221 København K",
+    "tags": [
+      "koncertsal",
+      "Dronningesalen",
+      "Den Sorte Diamant"
+    ],
+    "file": "data/den-sorte-diamant.json"
   }
 ]
