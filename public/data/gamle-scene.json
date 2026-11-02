@@ -1,0 +1,88 @@
+{
+  "id": "gamle-scene",
+  "name": "Gamle Scene (Det Kgl. Teater)",
+  "city": "København",
+  "address": "August Bournonvilles Passage 2-8, 1017 København K",
+  "website": "https://kglteater.dk",
+  "profile": "Det Kongelige Teaters klassiske hovedscene på Kongens Nytorv. Bruges til ballet, opera og store forestillinger.",
+  "sources": {
+    "tech_spec_pdf": "https://www.kglteater.dk/media/wjjlodgh/tech-sheet-en-old-stage-2023.pdf",
+    "list": [
+      {
+        "title": "Tech sheet Old Stage 2023",
+        "url": "https://www.kglteater.dk/media/wjjlodgh/tech-sheet-en-old-stage-2023.pdf"
+      }
+    ]
+  },
+  "spec_version": "General Information & Technical Specifications, Gamle Scene 2023 (hentet 2026-11-02)",
+  "rooms": [
+    {
+      "id": "gamle-scene",
+      "name": "Gamle Scene",
+      "capacity": {
+        "standing": null,
+        "seated": 1405,
+        "note": "Inkl. 106 stole i orkestergraven",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 26.3,
+        "depth_m": 21.2,
+        "clearance_stage_to_ceiling_m": 22,
+        "note": "Proscenium 12,3 m bredt og 5,75-7,85 m højt",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Studer Vista 5 M3",
+        "foh_position": "Parket under 1. balkon, række 12-14",
+        "pa": "L-Acoustics Kiva",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "rig": "Blandet teaterrig: Niethammer- og ADB-profiler, Vari-Lite VLZ, Robe T1/T2/Spiider, Selador cyc, HMI-følgespots. LED kun nævnt for forscenen",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "projectors": "Christie 18K og Panasonic 21K",
+        "screen": "PVC-lærred 10 x 19 m",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Stor teaterrig med HMI-følgespots, Studer Vista 5 og L-Acoustics Kiva, kraftige projektorer og lærred på 10 x 19 m samt gratis wifi (KGLSPOT).",
+        "bring": [
+          {
+            "text": "Lang telezoom (fx 100-400 mm). Salen har 1.405 pladser over flere balkoner."
+          },
+          {
+            "text": "Vidvinkel til totaler. Prosceniet er 12,3 m bredt."
+          },
+          {
+            "text": "Stativer til faste positioner. Aftal pladserne med Head of Stage.",
+            "inferred": "Kamerapositioner er ikke beskrevet i spec."
+          },
+          {
+            "text": "Ekstern optager og kabler til feed fra Studer-pulten. Aftal det med lydafdelingen.",
+            "inferred": "Optagemulighed er ikke beskrevet i spec."
+          },
+          {
+            "text": "Indstil hvidbalancen efter blandet lys. Riggen blander halogen, HMI og LED.",
+            "inferred": "Vurderet ud fra lampelisten."
+          },
+          {
+            "text": "Ekstra batterier og kort. Forestillinger varer ofte flere timer.",
+            "inferred": "Typisk forestillingslængde, ikke fra spec."
+          },
+          {
+            "text": "Encoder og plan B til internet. Der er gratis wifi, men kablet net er ikke nævnt.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Egne lyspakker og projektorer. Huset har dem.",
+        "good_to_know": "Søjlerne i salen (ca. 9 cm brede) kan tage udsynet fra nogle pladser, så besigtig kamerapositioner først. Load-in via Vognporten med elevator direkte til scenen (6000 kg). Crew-indgang Tordenskjoldsgade 8, send gæsteliste på forhånd. Arbejde efter kl. 23 er overtid. Strøm og regler for filmning står ikke i spec, så spørg Head of Stage.",
+        "house_provides": [
+          "light_stand"
+        ]
+      }
+    }
+  ]
+}

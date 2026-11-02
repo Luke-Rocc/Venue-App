@@ -159,5 +159,18 @@
       "Den Sorte Diamant"
     ],
     "file": "data/den-sorte-diamant.json"
+  },
+  {
+    "id": "gamle-scene",
+    "name": "Gamle Scene (Det Kgl. Teater)",
+    "area": "Indre By",
+    "address": "August Bournonvilles Passage 2-8, 1017 København K",
+    "tags": [
+      "teater",
+      "ballet",
+      "opera",
+      "Kongens Nytorv"
+    ],
+    "file": "data/gamle-scene.json"
   }
 ]
