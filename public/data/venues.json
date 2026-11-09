@@ -172,5 +172,28 @@
       "Kongens Nytorv"
     ],
     "file": "data/gamle-scene.json"
+  },
+  {
+    "id": "arbejdermuseet",
+    "name": "Arbejdermuseet (Festsalen)",
+    "area": "Indre By",
+    "address": "Rømersgade 22, 1362 København K",
+    "tags": [
+      "koncerter",
+      "debat",
+      "festsal"
+    ],
+    "file": "data/arbejdermuseet.json"
+  },
+  {
+    "id": "dansekapellet",
+    "name": "Dansekapellet (Teatersalen)",
+    "area": "Bispebjerg",
+    "address": "Bispebjerg Torv 1, 2400 København NV",
+    "tags": [
+      "dans",
+      "teater"
+    ],
+    "file": "data/dansekapellet.json"
   }
 ]

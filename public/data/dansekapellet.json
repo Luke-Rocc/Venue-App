@@ -1,0 +1,74 @@
+{
+  "id": "dansekapellet",
+  "name": "Dansekapellet (Teatersalen)",
+  "city": "København",
+  "address": "Bispebjerg Torv 1, 2400 København NV",
+  "website": "https://dansekapellet.kk.dk",
+  "profile": "Kommunalt dansehus i et tidligere kapel ved Bispebjerg Kirkegård. Teatersalen bruges til dans og forestillinger.",
+  "sources": {
+    "tech_spec_pdf": "https://dansekapellet.kk.dk/sites/default/files/2025-01/Technical%20rider%20%E2%80%93%20Teatersalen%20i%20Dansekapellet.docx",
+    "list": [
+      {
+        "title": "Technical rider – Teatersalen i Dansekapellet",
+        "url": "https://dansekapellet.kk.dk/sites/default/files/2025-01/Technical%20rider%20%E2%80%93%20Teatersalen%20i%20Dansekapellet.docx"
+      }
+    ]
+  },
+  "spec_version": "Technical rider, Teatersalen (udateret, uploadet 2025-01, hentet 2026-11-09)",
+  "rooms": [
+    {
+      "id": "teatersalen",
+      "name": "Teatersalen",
+      "capacity": {
+        "standing": null,
+        "seated": null,
+        "note": "Kapacitet står ikke i rideren",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 13.3,
+        "depth_m": 13.2,
+        "clearance_stage_to_ceiling_m": 6.34,
+        "note": "Gulvdybde målt fra publikumsopbygning til bagvæg. Spilleflade mellem sideben 10 x 9,35 m. Trækhøjde ca. 5,94 m. Spejl på bagvæggen, normalt tildækket. Ingen sidescener eller backstage",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Allen & Heath SQ5",
+        "mics": "Trådløse mikrofoner (model ikke oplyst)",
+        "note": "Træningsopsætning: minijack og Bluetooth",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "console": "MA3 XT wing",
+        "rig": "Større lyspakke til forestillinger (lamper ikke specificeret). Salen kan mørklægges og har dagslys",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "SQ5-mixer, trådløse mikrofoner, MA3-lyspult og en større lyspakke til forestillinger. Sort eller hvid dansevinyl.",
+        "bring": [
+          {
+            "text": "Vidvinkel til totaler. Spillefladen er 10 x 9,35 m."
+          },
+          {
+            "text": "Optager og kabler til feed fra SQ5. Aftal det med teknikken på forhånd.",
+            "inferred": "Optagemulighed er ikke beskrevet i rideren."
+          },
+          {
+            "text": "Mørklægning hvis I optager om dagen. Salen har dagslys, men kan mørklægges."
+          },
+          {
+            "text": "Gaffa og kabelbro der ikke skader dansevinylen.",
+            "inferred": "Udledt af at gulvet er dansevinyl over lakeret egetræ."
+          },
+          {
+            "text": "Egen strøm eller lange forlængere.",
+            "inferred": "Strøm står ikke i rideren."
+          }
+        ],
+        "leave_home": "Lyspult og mixer. Huset har dem.",
+        "good_to_know": "Al teknik ud over minijack, Bluetooth og arbejdslys skal bestilles hos Peter Bodholdt Løkke mindst en måned før. Egen tekniker skal godkendes af husets tekniske koordinator. Udstyr hænger altid i loftet, og større rekvisitter skal godkendes. Kapacitet, strøm og regler for filmning står ikke i rideren.",
+        "house_provides": []
+      }
+    }
+  ]
+}

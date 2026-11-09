@@ -1,0 +1,92 @@
+{
+  "id": "arbejdermuseet",
+  "name": "Arbejdermuseet (Festsalen)",
+  "city": "København",
+  "address": "Rømersgade 22, 1362 København K",
+  "website": "https://arbejdermuseet.dk",
+  "profile": "Historisk festsal på Arbejdermuseet ved Israels Plads. Bruges til koncerter, debatter og arrangementer.",
+  "sources": {
+    "tech_spec_pdf": "https://arbejdermuseet.dk/en/wp-content/uploads/sites/2/2026/07/Scene-og-tekniske-faciliteter.pdf",
+    "list": [
+      {
+        "title": "Scene og tekniske faciliteter (Festsalen)",
+        "url": "https://arbejdermuseet.dk/en/wp-content/uploads/sites/2/2026/07/Scene-og-tekniske-faciliteter.pdf"
+      }
+    ]
+  },
+  "spec_version": "Scene og tekniske faciliteter, Festsalen (udateret, uploadet 2026-07, hentet 2026-11-09)",
+  "rooms": [
+    {
+      "id": "festsalen",
+      "name": "Festsalen",
+      "capacity": {
+        "standing": null,
+        "seated": null,
+        "note": "Kapacitet står ikke i spec",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 8,
+        "depth_m": 3.5,
+        "height_m": 0.6,
+        "clearance_stage_to_ceiling_m": null,
+        "source": "tech_spec_pdf"
+      },
+      "power": {
+        "circuits": [
+          "63A hovedforsyning i skab ved scenen",
+          "2 tavler med mange 10A-udtag under scenen"
+        ],
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "pa": "8x L-Acoustics 5XT (EQ og delay sat op), 1x L-Acoustics Syva Sub under scenen, 3x LA2Xi",
+        "mics": "Shure MX412 (1 talerpult + 6 panel), Shure QLXD4 trådløse: 4 headset + 2 håndholdte, max 4 i brug samtidig",
+        "outputs": "1 balanceret XLR mono-udgang med samlet mix. Minijack AUX i teknikskabet",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "rig": "Scene: Buschfeld Fifty S / Ninety-five S 2700K, dæmpbar i 3 zoner. Sal: lysekroner og pendler 2700K, dæmpbar i mange zoner",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "projectors": "Panasonic PT-RCQ10 (10.000 ANSI lumen, 1920x1080)",
+        "screen": "Lissau motorlærred 4 m bredt, opbevares under scenen",
+        "inputs": "2x HDMI (scene og teknikskab bagerst i salen)",
+        "network": "Kablet 100 Mbit og wifi 100 Mbit",
+        "source": "tech_spec_pdf"
+      },
+      "spl_limits": {
+        "limit_dbc": 90,
+        "note": "Måles automatisk. Over grænsen i 60 sek. slukkes lyd og scenestrøm, og en museumsvært skal tænde igen",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "L-Acoustics-anlæg, Shure trådløse mikrofoner, projektor og 4 m lærred, 2700K scenelys og 100 Mbit net.",
+        "bring": [
+          {
+            "text": "Optager med XLR-indgang til husets mono-mix. Der er kun én samlet mono-udgang, så brug egne mikrofoner til stereo eller rum."
+          },
+          {
+            "text": "Sæt hvidbalancen til ca. 2700K. Både scene- og sallys er 2700K."
+          },
+          {
+            "text": "Lysstærkt objektiv eller lidt ekstra lys. Scenelyset er varmt hvidt arbejdslys uden effektlys.",
+            "inferred": "Udledt af lampelisten, kun dæmpbare zoner nævnt."
+          },
+          {
+            "text": "Vidvinkel. Scenen er kun 8 x 3,5 m og salen er en festsal.",
+            "inferred": "Salens mål står ikke i spec."
+          },
+          {
+            "text": "Encoder og plan B til net. Kablet net og wifi er kun 100 Mbit.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Projektor, lærred og PA. Huset har dem.",
+        "good_to_know": "Hård grænse på 90 dB(C): over grænsen i 60 sekunder slukker lyd og scenestrøm, så dit kamera på scenestrøm går også ned. Brug batterier eller anden strøm til optagelsen. Kapacitet, load-in og regler for filmning står ikke i spec, så spørg museet.",
+        "house_provides": []
+      }
+    }
+  ]
+}
