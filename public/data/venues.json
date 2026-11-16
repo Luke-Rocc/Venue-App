@@ -195,5 +195,29 @@
       "teater"
     ],
     "file": "data/dansekapellet.json"
+  },
+  {
+    "id": "lygten-station",
+    "name": "Lygten Station",
+    "area": "Nordvest",
+    "address": "Lygten, 2400 København NV",
+    "tags": [
+      "koncerter",
+      "DJ",
+      "kulturhus"
+    ],
+    "file": "data/lygten-station.json"
+  },
+  {
+    "id": "dac-salen",
+    "name": "Dansk Arkitektur Center (Salen)",
+    "area": "Indre By",
+    "address": "BLOX, Bryghusgade 10, 1473 København K",
+    "tags": [
+      "konference",
+      "talks",
+      "event"
+    ],
+    "file": "data/dac-salen.json"
   }
 ]

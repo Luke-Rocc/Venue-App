@@ -1,0 +1,76 @@
+{
+  "id": "lygten-station",
+  "name": "Lygten Station",
+  "city": "København",
+  "address": "Lygten, 2400 København NV",
+  "website": "https://kulturogfritidn.kk.dk/huse/lygten-station",
+  "profile": "Kommunalt kulturhus i den gamle stationsbygning ved Lygten i Nordvest. Koncerter, DJ-aftener og mindre scener.",
+  "sources": {
+    "tech_spec_pdf": "https://kulturogfritidn.kk.dk/huse/lygten-station/samarbejde/technical-specifications-lygten-station",
+    "list": [
+      {
+        "title": "Technical specifications Lygten Station (Kultur og Fritid N)",
+        "url": "https://kulturogfritidn.kk.dk/huse/lygten-station/samarbejde/technical-specifications-lygten-station"
+      }
+    ]
+  },
+  "spec_version": "Technical specifications Lygten Station (webside, udateret, hentet 2026-11-16)",
+  "rooms": [
+    {
+      "id": "stationssalen",
+      "name": "Stationssalen",
+      "capacity": {
+        "standing": null,
+        "seated": null,
+        "note": "Spec skriver \"150/80\" uden at sige hvad der er stående og siddende",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 4.7,
+        "depth_m": 6.36,
+        "height_m": 0.4,
+        "clearance_stage_to_ceiling_m": null,
+        "note": "Trekantet scene: L 6,36 m, B 4,7 m",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "foh_console": "Midas M32R",
+        "pa": "d&b C7 (4 sub + 2 top), d&b P1200A sub + top, dbx DriveRack Venue360",
+        "monitors": "4 sends: 6x Turbosound TXD15M",
+        "mics": "Shure SM57/SM56/Beta58, Sennheiser e604/e606/e614, AKG D112, Audix D6/i5, Røde NT5, 2x AKG WMS40 trådløse, 8 DI",
+        "source": "tech_spec_pdf"
+      },
+      "lights": {
+        "console": "ChamSys QuickQ 20",
+        "rig": "6x Varytec Hero Wash 340FX RGBW, 4x Varytec Hero Spot 90, 3x Varytec LED Theatre Spot 100 3000K (front), 6x LED-barer RGBA (side), blinder, spejlkugle",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Midas M32R, d&b-anlæg, fuld mikrofonpakke, LED-lysrig med ChamSys-pult samt DJ-setup (CDJ2000, 2x Technics 1210, DJM-S3).",
+        "bring": [
+          {
+            "text": "Ekstern optager og kabler til feed fra M32R. Spørg huset om USB-optagelse eller AES/analog ud.",
+            "inferred": "Optagemulighed er ikke beskrevet i spec."
+          },
+          {
+            "text": "Sæt hvidbalancen manuelt. Frontlyset er 3000K, resten er farve-LED."
+          },
+          {
+            "text": "Hurtig lukker eller global shutter mod flimmer. Riggen er næsten kun LED.",
+            "inferred": "Udledt af lampelisten."
+          },
+          {
+            "text": "Vidvinkel. Scenen er lille og trekantet (6,36 x 4,7 m)."
+          },
+          {
+            "text": "Egen strøm eller lange forlængere til kameraer.",
+            "inferred": "Strøm står ikke i spec."
+          }
+        ],
+        "leave_home": "Lyspult, PA og mikrofoner. Huset har dem.",
+        "good_to_know": "Huset har også to små scener: Backstage Scene (30 pladser, Yamaha EMX512) og Sidesporet (40 pladser, Mackie ProFX12). Strøm, loftshøjde, lydgrænse og regler for filmning står ikke i spec, så spørg Kultur og Fritid N.",
+        "house_provides": []
+      }
+    }
+  ]
+}

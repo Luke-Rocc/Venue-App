@@ -1,0 +1,73 @@
+{
+  "id": "dac-salen",
+  "name": "Dansk Arkitektur Center (Salen)",
+  "city": "København",
+  "address": "BLOX, Bryghusgade 10, 1473 København K",
+  "website": "https://dac.dk",
+  "profile": "Event- og konferencesal i BLOX ved havnen. Bruges til talks, konferencer og arrangementer med AV-tekniker inkluderet.",
+  "sources": {
+    "tech_spec_pdf": "https://dac.kontainer.com/cdn/yZqYpWOAvhz4/salen-the-hall-specs-danish-architecture-center.pdf",
+    "list": [
+      {
+        "title": "Salen / The Hall specs, Danish Architecture Center",
+        "url": "https://dac.kontainer.com/cdn/yZqYpWOAvhz4/salen-the-hall-specs-danish-architecture-center.pdf"
+      }
+    ]
+  },
+  "spec_version": "Salen / The Hall specs (udateret, hentet 2026-11-16)",
+  "rooms": [
+    {
+      "id": "salen",
+      "name": "Salen",
+      "capacity": {
+        "standing": 250,
+        "seated": 210,
+        "note": "220 m². Teater 210, stående reception 250, banket 120",
+        "source": "tech_spec_pdf"
+      },
+      "stage": {
+        "width_m": 8,
+        "depth_m": 2,
+        "height_m": null,
+        "clearance_stage_to_ceiling_m": null,
+        "note": "Standardscene 8 x 2 m. Spec angiver loftshøjde 7 / 3 m uden at sige hvor",
+        "source": "tech_spec_pdf"
+      },
+      "sound": {
+        "pa": "Højttaleranlæg (model ikke oplyst)",
+        "mics": "Håndholdt og headset (modeller ikke oplyst)",
+        "source": "tech_spec_pdf"
+      },
+      "video": {
+        "projectors": "Projektor (model ikke oplyst)",
+        "screen": "16:9-lærred 6 x 3,37 m. Salen kan mørklægges",
+        "network": "Trådløst internet",
+        "source": "tech_spec_pdf"
+      },
+      "gear": {
+        "house_has": "Projektor, 6 m lærred, højttalere, håndholdt og headset-mikrofon samt en AV-tekniker. Streaming og optagelse kan købes som tilvalg.",
+        "bring": [
+          {
+            "text": "Egen lyd-optager og kabler til feed fra husets anlæg. Aftal det med AV-teknikeren.",
+            "inferred": "Lydudgange er ikke beskrevet i spec."
+          },
+          {
+            "text": "Lys til talere. Spec nævner intet scenelys.",
+            "inferred": "Udledt af at lys mangler i spec."
+          },
+          {
+            "text": "Mål eksponeringen mod lærredet. Det er 6 m bredt og lyser kraftigt op bag taleren.",
+            "inferred": "Typisk ved projektion bag scenen."
+          },
+          {
+            "text": "Encoder og 4G/5G-backup. Kun trådløst internet er nævnt.",
+            "needs": "livestream"
+          }
+        ],
+        "leave_home": "Projektor og lærred. Huset har dem.",
+        "good_to_know": "En AV-tekniker er med i lejen. Streaming og optagelse tilbyder huset mod betaling (meeting@dac.dk), så aftal på forhånd hvem der filmer. Strøm, loftsophæng og lydgrænse står ikke i spec.",
+        "house_provides": []
+      }
+    }
+  ]
+}
